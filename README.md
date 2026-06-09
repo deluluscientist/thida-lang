@@ -53,7 +53,7 @@ Data Science Student, Amateur Programmer, and Novice Researcher with a keen inte
 | Min Sithu | Contributor |
 | Min Htet Myat | Contributor |
 | May Mon Thant | Contributor |
-| Thi Han Tun (Louis) | Contributor |
+| Thi Han Htun (Louis) | Contributor |
 
 ---
 
