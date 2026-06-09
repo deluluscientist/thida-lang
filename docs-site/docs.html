@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Docs — Thida Lang 1.2</title>
+<meta name="description" content="Full language reference for Thida Lang — Myanmar grammar-based data language.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <span class="nav-logo">Thida Lang</span>
+    <span class="nav-badge">1.2 Beta</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="docs.html"  class="nav-link active">Docs</a>
+    <a href="about.html" class="nav-link">About</a>
+    <a href="https://github.com/deluluscientist/thida-lang" target="_blank" class="nav-link nav-gh">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+          0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+          -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+          .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+          -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+          1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+          1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+          1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<div class="docs-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="docs-sidebar">
+    <div class="ds-group">
+      <div class="ds-group-title">Getting Started</div>
+      <a href="#installation"  class="ds-link active">Installation</a>
+      <a href="#quickstart"    class="ds-link">Quick Start</a>
+      <a href="#ide"           class="ds-link">Web IDE</a>
+      <a href="#syntax"        class="ds-link">Syntax Design</a>
+    </div>
+    <div class="ds-group">
+      <div class="ds-group-title">Language Reference</div>
+      <a href="#output"        class="ds-link">Output</a>
+      <a href="#variables"     class="ds-link">Variables</a>
+      <a href="#loading"       class="ds-link">Loading Data</a>
+      <a href="#inspection"    class="ds-link">Data Inspection</a>
+      <a href="#statistics"    class="ds-link">Statistics</a>
+      <a href="#cleaning"      class="ds-link">Data Cleaning</a>
+      <a href="#modeling"      class="ds-link">Modeling</a>
+      <a href="#visualization" class="ds-link">Visualization</a>
+      <a href="#comments"      class="ds-link">Comments</a>
+    </div>
+    <div class="ds-group">
+      <div class="ds-group-title">Built-in Datasets</div>
+      <a href="#datasets"      class="ds-link">Overview</a>
+    </div>
+    <div class="ds-group">
+      <div class="ds-group-title">CLI</div>
+      <a href="#cli"           class="ds-link">Running Scripts</a>
+      <a href="#repl"          class="ds-link">REPL</a>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="docs-content">
+
+    <!-- ── INSTALLATION ── -->
+    <div class="dc-section highlight-target" id="installation">
+      <h1 class="dc-h1">Installation</h1>
+      <p class="dc-lead">Thida Lang requires Python 3.9 or newer.</p>
+
+      <h2 class="dc-h2">1. Clone the repository</h2>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">bash</span></div>
+        <div class="cb-body">git clone https://github.com/deluluscientist/thida-lang.git
+cd thida-lang</div>
+      </div>
+
+      <h2 class="dc-h2">2. Install dependencies</h2>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">bash</span></div>
+        <div class="cb-body">pip install -r requirements.txt</div>
+      </div>
+      <p class="dc-p">This installs: <code>pandas</code> <code>numpy</code> <code>openpyxl</code> <code>scikit-learn</code> <code>matplotlib</code> <code>flask</code></p>
+    </div>
+
+    <!-- ── QUICK START ── -->
+    <div class="dc-section highlight-target" id="quickstart">
+      <h1 class="dc-h1">Quick Start</h1>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body"><span class="cmt">// Print a message</span>
+(<span class="str">"Hello, Thida Lang!"</span>) <span class="verb">ကိုဖော်ပြပါ</span>
+
+<span class="cmt">// Load the students dataset</span>
+(<span class="str">"students"</span>) <span class="verb">ကိုဖတ်ပါ</span>
+(<span class="str">"students"</span>) <span class="verb">ကို Header ဖော်ပြပါ</span>
+(<span class="str">"students"</span>) <span class="verb">ကို အကျဥ်းချုပ် ဖော်ပြပါ</span>
+
+<span class="cmt">// Compute the mean of Math scores</span>
+(<span class="str">"students"</span> <span class="op">></span> column = <span class="str">"Math"</span>) <span class="verb">ကို mean ကိုဖော်ပြပါ</span>
+
+<span class="cmt">// Draw a scatter plot</span>
+(<span class="str">"students"</span> <span class="op">></span> x = <span class="str">"Math"</span> , y = <span class="str">"Science"</span>)
+  <span class="verb">ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ</span></div>
+      </div>
+    </div>
+
+    <!-- ── WEB IDE ── -->
+    <div class="dc-section highlight-target" id="ide">
+      <h1 class="dc-h1">Web IDE</h1>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">bash</span></div>
+        <div class="cb-body">python3 web/app.py
+<span style="color:var(--dim)"># Open http://localhost:5050</span></div>
+      </div>
+      <p class="dc-p">The IDE has four panels:</p>
+      <table class="ref-table">
+        <tr><th>Panel</th><th>Location</th><th>Purpose</th></tr>
+        <tr><td>Code Editor</td><td>Top-left</td><td>Write and run Thida Lang code</td></tr>
+        <tr><td>Data Viewer</td><td>Top-right</td><td>Inspect loaded datasets as tables</td></tr>
+        <tr><td>Console</td><td>Bottom-left</td><td>Output, errors, run status</td></tr>
+        <tr><td>Plots</td><td>Bottom-right</td><td>Charts with statistical descriptions</td></tr>
+      </table>
+      <p class="dc-p">Keyboard shortcuts: <kbd>Ctrl+Enter</kbd> run · <kbd>Ctrl+S</kbd> save · <kbd>Ctrl+B</kbd> toggle sidebar</p>
+    </div>
+
+    <!-- ── SYNTAX ── -->
+    <div class="dc-section highlight-target" id="syntax">
+      <h1 class="dc-h1">Syntax Design</h1>
+      <p class="dc-p">Thida Lang follows Myanmar's <strong>Subject–Object–Verb (SOV)</strong> grammar. Every statement places the object inside parentheses and ends with a Myanmar verb.</p>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">pattern</span></div>
+        <div class="cb-body">(object) verb
+(object <span class="op">></span> key = value , key = value) verb</div>
+      </div>
+      <div class="callout">
+        <span class="callout-icon">💡</span>
+        <span>The <code>&gt;</code> pipe separates the dataset name from its options. Commas separate multiple options.</span>
+      </div>
+    </div>
+
+    <!-- ── OUTPUT ── -->
+    <div class="dc-section highlight-target" id="output">
+      <h1 class="dc-h1">Output</h1>
+      <p class="dc-p">Print any value — string, number, or variable.</p>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body">(<span class="str">"မင်္ဂလာပါ!"</span>) <span class="verb">ကိုဖော်ပြပါ</span>
+(<span class="num">42</span>) <span class="verb">ကိုဖော်ပြပါ</span>
+(my_variable) <span class="verb">ကိုဖော်ပြပါ</span></div>
+      </div>
+    </div>
+
+    <!-- ── VARIABLES ── -->
+    <div class="dc-section highlight-target" id="variables">
+      <h1 class="dc-h1">Variables</h1>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body"><span class="cmt">// Assign a value</span>
+(<span class="num">95</span>) ကို score <span class="verb">ဟု သတ်မှတ်ပါ</span>
+(<span class="str">"Yangon"</span>) ကို city <span class="verb">ဟု သတ်မှတ်ပါ</span>
+
+<span class="cmt">// Display a variable</span>
+(score) <span class="verb">ကိုဖော်ပြပါ</span>
+
+<span class="cmt">// Save dataset under a new name</span>
+(students) ကို backup <span class="verb">အဖြစ် သိမ်းဆည်းပါ</span></div>
+      </div>
+    </div>
+
+    <!-- ── LOADING DATA ── -->
+    <div class="dc-section highlight-target" id="loading">
+      <h1 class="dc-h1">Loading Data</h1>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body"><span class="cmt">// Built-in dataset (by name)</span>
+(<span class="str">"students"</span>) <span class="verb">ကိုဖတ်ပါ</span>
+
+<span class="cmt">// CSV file</span>
+(<span class="str">"data.csv"</span> , file type = csv , safe copy = true) <span class="verb">ကိုဖတ်ပါ</span>
+
+<span class="cmt">// Excel file</span>
+(<span class="str">"report.xlsx"</span> , file type = excel , Sheet = <span class="str">"Sheet1"</span>) <span class="verb">ကိုဖတ်ပါ</span></div>
+      </div>
+      <div class="callout">
+        <span class="callout-icon">ℹ️</span>
+        <span>The dataset is stored automatically under the filename stem — <code>"students.csv"</code> becomes the variable <code>students</code>.</span>
+      </div>
+    </div>
+
+    <!-- ── INSPECTION ── -->
+    <div class="dc-section highlight-target" id="inspection">
+      <h1 class="dc-h1">Data Inspection</h1>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body"><span class="cmt">// Column names</span>
+(<span class="str">"students"</span>) <span class="verb">ကို Header ဖော်ပြပါ</span>
+
+<span class="cmt">// Summary statistics</span>
+(<span class="str">"students"</span>) <span class="verb">ကို အကျဥ်းချုပ် ဖော်ပြပါ</span>
+
+<span class="cmt">// First N rows</span>
+(<span class="str">"students"</span>) <span class="verb">ရဲ့ အစပိုင်း "10" လိုင်းဖော်ပြပါ</span>
+
+<span class="cmt">// Column data types</span>
+(<span class="str">"students"</span>) <span class="verb">ရဲ့ အမျိုးအစားများ ဖော်ပြပါ</span>
+
+<span class="cmt">// Count missing values</span>
+(<span class="str">"students"</span>) <span class="verb">ရဲ့ missing values အရေအတွက်ကို ဖော်ပြပါ</span></div>
+      </div>
+    </div>
+
+    <!-- ── STATISTICS ── -->
+    <div class="dc-section highlight-target" id="statistics">
+      <h1 class="dc-h1">Statistics</h1>
+      <table class="ref-table">
+        <tr><th>Operation</th><th>Syntax</th></tr>
+        <tr><td>Mean</td><td><code>("dataset" &gt; column = "col") ကို mean ကိုဖော်ပြပါ</code></td></tr>
+        <tr><td>Maximum</td><td><code>("dataset" &gt; column = "col") ကို max ကိုဖော်ပြပါ</code></td></tr>
+        <tr><td>Minimum</td><td><code>("dataset" &gt; column = "col") ကို min ကိုဖော်ပြပါ</code></td></tr>
+        <tr><td>Mode</td><td><code>("dataset" &gt; column = "col") ကို mode ကိုဖော်ပြပါ</code></td></tr>
+        <tr><td>Frequency</td><td><code>("dataset" &gt; column = "col") ကို frequency ကိုဖော်ပြပါ</code></td></tr>
+        <tr><td>Group By</td><td><code>("dataset" &gt; group by "col" , agg = "sum" , target = "col2") ကို ဖော်ပြပါ</code></td></tr>
+      </table>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">example</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body">(<span class="str">"students"</span> <span class="op">></span> column = <span class="str">"Math"</span>) <span class="verb">ကို mean ကိုဖော်ပြပါ</span>
+(<span class="str">"students"</span> <span class="op">></span> column = <span class="str">"Math"</span>) <span class="verb">ကို max ကိုဖော်ပြပါ</span>
+(<span class="str">"sales"</span> <span class="op">></span> column = <span class="str">"Region"</span>) <span class="verb">ကို frequency ကိုဖော်ပြပါ</span>
+(<span class="str">"sales"</span> <span class="op">></span> group by <span class="str">"Region"</span> , agg = <span class="str">"sum"</span> , target = <span class="str">"Revenue"</span>) <span class="verb">ကို ဖော်ပြပါ</span></div>
+      </div>
+    </div>
+
+    <!-- ── CLEANING ── -->
+    <div class="dc-section highlight-target" id="cleaning">
+      <h1 class="dc-h1">Data Cleaning</h1>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body"><span class="cmt">// Fill missing values (mean / median / mode / value)</span>
+(<span class="str">"students"</span> <span class="op">></span> missing values = <span class="str">"mean"</span> , column = <span class="str">"Math"</span>) <span class="verb">ကို ဖြည့်ပေးပါ</span>
+
+<span class="cmt">// Drop rows with any missing value</span>
+(<span class="str">"students"</span>) <span class="verb">ကို ဖျက်ပစ်ပါ</span>
+
+<span class="cmt">// Drop a column</span>
+(<span class="str">"students"</span> <span class="op">></span> column = <span class="str">"StudentID"</span>) <span class="verb">ကို ဖျက်ပစ်ပါ</span>
+
+<span class="cmt">// Rename a column</span>
+(<span class="str">"sales"</span> <span class="op">></span> old = <span class="str">"Rev"</span> , new = <span class="str">"Revenue_USD"</span>) <span class="verb">ကို ပြောင်းပေးပါ</span>
+
+<span class="cmt">// Filter rows</span>
+(<span class="str">"students"</span> <span class="op">></span> column = <span class="str">"Math"</span> , value = <span class="num">70</span> , op = <span class="str">">="</span>) <span class="verb">ကို စစ်ထုတ်ပါ</span>
+
+<span class="cmt">// Sort descending</span>
+(<span class="str">"students"</span> <span class="op">></span> column = <span class="str">"Math"</span> , order = <span class="str">"descending"</span>) <span class="verb">ကို စီပေးပါ</span>
+
+<span class="cmt">// Add a new column</span>
+(<span class="str">"sales"</span> <span class="op">></span> name = <span class="str">"Tax"</span> , expr = <span class="str">"Revenue * 0.1"</span>) <span class="verb">ကို ထည့်ပေးပါ</span>
+
+<span class="cmt">// Save to CSV</span>
+(<span class="str">"students"</span> <span class="op">></span> filename = <span class="str">"output.csv"</span>) <span class="verb">ကို သိမ်းဆည်းပါ</span></div>
+      </div>
+    </div>
+
+    <!-- ── MODELING ── -->
+    <div class="dc-section highlight-target" id="modeling">
+      <h1 class="dc-h1">Modeling</h1>
+      <p class="dc-p">Thida Lang supports linear regression via scikit-learn.</p>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body"><span class="cmt">// 1. Build the model</span>
+(<span class="str">"housing"</span> <span class="op">></span>
+  features = <span class="str">"Size_sqft,Bedrooms"</span> ,
+  target = <span class="str">"Price_MMK"</span>)
+  <span class="verb">ကို linear_model တည်ဆောက်ပါ</span>
+
+<span class="cmt">// Output: R², RMSE, coefficients</span></div>
+      </div>
+    </div>
+
+    <!-- ── VISUALIZATION ── -->
+    <div class="dc-section highlight-target" id="visualization">
+      <h1 class="dc-h1">Visualization</h1>
+      <table class="ref-table">
+        <tr><th>Chart</th><th>Verb</th></tr>
+        <tr><td>Scatter Plot</td><td><code>ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ</code></td></tr>
+        <tr><td>Histogram</td><td><code>ကို ပုံဆွဲပေးပါ</code> (with <code>plot = "histogram"</code>)</td></tr>
+        <tr><td>Bar Chart</td><td><code>ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ</code></td></tr>
+        <tr><td>Line Chart</td><td><code>ကို line_chart အဖြစ် ပုံဆွဲပေးပါ</code></td></tr>
+        <tr><td>Box Plot</td><td><code>ကို box_plot အဖြစ် ပုံဆွဲပေးပါ</code></td></tr>
+      </table>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">example</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body">(<span class="str">"students"</span> <span class="op">></span> x = <span class="str">"Math"</span> , y = <span class="str">"Science"</span>)
+  <span class="verb">ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ</span>
+
+(<span class="str">"students"</span> <span class="op">></span> group by <span class="str">"Math"</span> , plot = <span class="str">"histogram"</span>)
+  <span class="verb">ကို ပုံဆွဲပေးပါ</span>
+
+(<span class="str">"sales"</span> <span class="op">></span> x = <span class="str">"Region"</span> , y = <span class="str">"Revenue"</span>)
+  <span class="verb">ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ</span>
+
+(<span class="str">"sales"</span> <span class="op">></span> x = <span class="str">"Month"</span> , y = <span class="str">"Revenue"</span>)
+  <span class="verb">ကို line_chart အဖြစ် ပုံဆွဲပေးပါ</span>
+
+(<span class="str">"health"</span> <span class="op">></span> column = <span class="str">"BMI"</span>)
+  <span class="verb">ကို box_plot အဖြစ် ပုံဆွဲပေးပါ</span></div>
+      </div>
+    </div>
+
+    <!-- ── COMMENTS ── -->
+    <div class="dc-section highlight-target" id="comments">
+      <h1 class="dc-h1">Comments</h1>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span></div>
+        <div class="cb-body"><span class="cmt">// Line comment</span>
+
+<span class="cmt">/* Block comment
+   spanning multiple lines */</span></div>
+      </div>
+    </div>
+
+    <!-- ── DATASETS ── -->
+    <div class="dc-section highlight-target" id="datasets">
+      <h1 class="dc-h1">Built-in Datasets</h1>
+      <table class="ref-table">
+        <tr><th>Name</th><th>Rows</th><th>Columns</th><th>Description</th></tr>
+        <tr><td><code>students</code></td><td>20</td><td>10</td><td>Student scores, grades, cities (Myanmar context)</td></tr>
+        <tr><td><code>sales</code></td><td>24</td><td>10</td><td>Product sales by region, month, and category</td></tr>
+        <tr><td><code>health</code></td><td>20</td><td>13</td><td>Patient health metrics including BMI, blood pressure</td></tr>
+        <tr><td><code>housing</code></td><td>24</td><td>13</td><td>Property prices in Myanmar townships</td></tr>
+      </table>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">load any built-in dataset</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body">(<span class="str">"students"</span>) <span class="verb">ကိုဖတ်ပါ</span>
+(<span class="str">"sales"</span>)    <span class="verb">ကိုဖတ်ပါ</span>
+(<span class="str">"health"</span>)   <span class="verb">ကိုဖတ်ပါ</span>
+(<span class="str">"housing"</span>)  <span class="verb">ကိုဖတ်ပါ</span></div>
+      </div>
+    </div>
+
+    <!-- ── CLI ── -->
+    <div class="dc-section highlight-target" id="cli">
+      <h1 class="dc-h1">Running Scripts</h1>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">bash</span></div>
+        <div class="cb-body">python3 thida_run.py my_analysis.thida</div>
+      </div>
+    </div>
+
+    <!-- ── REPL ── -->
+    <div class="dc-section highlight-target" id="repl">
+      <h1 class="dc-h1">REPL</h1>
+      <p class="dc-p">Interactive mode — type code, press Enter on an empty line to run.</p>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">bash</span></div>
+        <div class="cb-body">python3 thida_run.py</div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Thida Lang</div>
+    <p>Myanmar grammar-based programming language · 1.2 Beta</p>
+    <p style="margin-top:8px">
+      Built by <a href="about.html">Pyae Sone Phyo (Harry)</a> ·
+      <a href="https://github.com/deluluscientist/thida-lang" target="_blank">GitHub</a> ·
+      MIT License
+    </p>
+  </div>
+</footer>
+
+<script>
+function copyCode(btn) {
+  const code = btn.closest(".code-block").querySelector(".cb-body").innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = "Copied!";
+    setTimeout(() => btn.textContent = "Copy", 1800);
+  });
+}
+
+// Highlight active sidebar link on scroll
+const sections = document.querySelectorAll(".highlight-target");
+const links    = document.querySelectorAll(".ds-link");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(l => l.classList.remove("active"));
+      const match = document.querySelector(`.ds-link[href="#${e.target.id}"]`);
+      if (match) match.classList.add("active");
+    }
+  });
+}, { rootMargin: "-20% 0px -70% 0px" });
+sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

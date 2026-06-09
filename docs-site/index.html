@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thida Lang — Myanmar Data Language</title>
+<meta name="description" content="Thida Lang 1.2 Beta — The first Myanmar grammar-based programming language for data analysis.">
+<meta property="og:title" content="Thida Lang 1.2 Beta">
+<meta property="og:description" content="Write data analysis code in Myanmar grammar structure.">
+<meta property="og:image" content="assets/cover.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <span class="nav-logo">Thida Lang</span>
+    <span class="nav-badge">1.2 Beta</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html"    class="nav-link active">Home</a>
+    <a href="docs.html"     class="nav-link">Docs</a>
+    <a href="about.html"    class="nav-link">About</a>
+    <a href="https://github.com/deluluscientist/thida-lang" target="_blank" class="nav-link nav-gh">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+          0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+          -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+          .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+          -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+          1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+          1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+          1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+      GitHub
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">Myanmar Grammar · Data Analysis · Open Source</span>
+  <h1 class="hero-title">Code in<br><span>Myanmar Grammar</span></h1>
+  <p class="hero-sub">
+    Thida Lang is the first programming language that follows Myanmar's natural
+    Subject–Object–Verb sentence structure. Write data analysis programs that
+    read like plain Burmese text.
+  </p>
+  <div class="hero-btns">
+    <a href="docs.html" class="btn btn-primary">Get Started →</a>
+    <a href="about.html" class="btn btn-secondary">Our Story</a>
+    <a href="https://github.com/deluluscientist/thida-lang" target="_blank" class="btn btn-secondary">View on GitHub</a>
+  </div>
+  <img src="assets/cover.png" alt="Thida Lang IDE" class="hero-cover">
+</section>
+
+<hr class="divider">
+
+<!-- FEATURES -->
+<section class="section">
+  <h2 class="section-title">Why Thida Lang?</h2>
+  <p class="section-sub">Built for Myanmar speakers who want to work with data naturally.</p>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="fc-icon">🇲🇲</div>
+      <div class="fc-title">Myanmar Grammar Syntax</div>
+      <div class="fc-desc">Every statement ends with a Burmese verb. Code reads like natural Burmese sentences — no English grammar required.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon">📊</div>
+      <div class="fc-title">Built for Data Analysis</div>
+      <div class="fc-desc">Load CSV & Excel, compute statistics, clean data, train linear models, and generate charts — all in Myanmar syntax.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon">🖥</div>
+      <div class="fc-title">4-Panel IDE</div>
+      <div class="fc-desc">RStudio-inspired web IDE with code editor, data viewer, console, and plots panel. Dark and light themes.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon">📈</div>
+      <div class="fc-title">5 Chart Types</div>
+      <div class="fc-desc">Scatter plot, histogram, bar chart, line chart, and box plot — with automatic statistical descriptions.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon">🗃</div>
+      <div class="fc-title">Built-in Datasets</div>
+      <div class="fc-desc">Four ready-to-use datasets: students, sales, health, and housing — all with Myanmar context.</div>
+    </div>
+    <div class="feature-card">
+      <div class="fc-icon">📖</div>
+      <div class="fc-title">9 Lesson Docs</div>
+      <div class="fc-desc">Complete learning path from getting started to linear regression, all written in Myanmar language.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- QUICK START -->
+<section class="section">
+  <h2 class="section-title">Quick Start</h2>
+  <p class="section-sub">Get up and running in under a minute.</p>
+
+  <div class="qs-grid">
+    <div>
+      <h3 style="color:var(--bright);font-size:1rem;font-weight:700;margin-bottom:12px">1. Install dependencies</h3>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">bash</span></div>
+        <div class="cb-body">pip install -r requirements.txt</div>
+      </div>
+
+      <h3 style="color:var(--bright);font-size:1rem;font-weight:700;margin:20px 0 12px">2. Start the IDE</h3>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">bash</span></div>
+        <div class="cb-body">python3 web/app.py
+<span style="color:var(--dim)"># → http://localhost:5050</span></div>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="color:var(--bright);font-size:1rem;font-weight:700;margin-bottom:12px">3. Write your first program</h3>
+      <div class="code-block">
+        <div class="cb-header"><span class="cb-lang">thida</span><button class="cb-copy" onclick="copyCode(this)">Copy</button></div>
+        <div class="cb-body"><span class="cmt">// Hello World</span>
+(<span class="str">"Hello, Thida Lang!"</span>) <span class="verb">ကိုဖော်ပြပါ</span>
+
+<span class="cmt">// Load dataset</span>
+(<span class="str">"students"</span>) <span class="verb">ကိုဖတ်ပါ</span>
+(<span class="str">"students"</span>) <span class="verb">ကို Header ဖော်ပြပါ</span>
+
+<span class="cmt">// Draw a scatter plot</span>
+(<span class="str">"students"</span> <span class="op">></span> x = <span class="str">"Math"</span> , y = <span class="str">"Science"</span>)
+  <span class="verb">ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SYNTAX OVERVIEW -->
+<section class="section">
+  <h2 class="section-title">Language at a Glance</h2>
+  <p class="section-sub">Every statement: <code>(object) verb</code></p>
+
+  <div class="feature-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))">
+
+    <div class="code-block">
+      <div class="cb-header"><span class="cb-lang">Output</span></div>
+      <div class="cb-body">(<span class="str">"မင်္ဂလာပါ!"</span>) <span class="verb">ကိုဖော်ပြပါ</span>
+(<span class="num">42</span>) <span class="verb">ကိုဖော်ပြပါ</span></div>
+    </div>
+
+    <div class="code-block">
+      <div class="cb-header"><span class="cb-lang">Variables</span></div>
+      <div class="cb-body">(<span class="num">95</span>) ကို score <span class="verb">ဟု သတ်မှတ်ပါ</span>
+(score) <span class="verb">ကိုဖော်ပြပါ</span></div>
+    </div>
+
+    <div class="code-block">
+      <div class="cb-header"><span class="cb-lang">Statistics</span></div>
+      <div class="cb-body">(<span class="str">"students"</span> <span class="op">></span> column = <span class="str">"Math"</span>)
+  <span class="verb">ကို mean ကိုဖော်ပြပါ</span></div>
+    </div>
+
+    <div class="code-block">
+      <div class="cb-header"><span class="cb-lang">Filter</span></div>
+      <div class="cb-body">(<span class="str">"students"</span> <span class="op">></span> column = <span class="str">"Math"</span> ,
+  value = <span class="num">70</span> , op = <span class="str">">="</span>)
+  <span class="verb">ကို စစ်ထုတ်ပါ</span></div>
+    </div>
+
+    <div class="code-block">
+      <div class="cb-header"><span class="cb-lang">Visualization</span></div>
+      <div class="cb-body">(<span class="str">"sales"</span> <span class="op">></span> x = <span class="str">"Region"</span> ,
+  y = <span class="str">"Revenue"</span>)
+  <span class="verb">ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ</span></div>
+    </div>
+
+    <div class="code-block">
+      <div class="cb-header"><span class="cb-lang">ML Model</span></div>
+      <div class="cb-body">(<span class="str">"housing"</span> <span class="op">></span>
+  features = <span class="str">"Size_sqft,Bedrooms"</span> ,
+  target = <span class="str">"Price_MMK"</span>)
+  <span class="verb">ကို linear_model တည်ဆောက်ပါ</span></div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:40px">
+    <a href="docs.html" class="btn btn-primary">Full Language Reference →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Thida Lang</div>
+    <p>Myanmar grammar-based programming language · 1.2 Beta</p>
+    <p style="margin-top:8px">
+      Built by <a href="about.html">Pyae Sone Phyo (Harry)</a> ·
+      <a href="https://github.com/deluluscientist/thida-lang" target="_blank">GitHub</a> ·
+      MIT License
+    </p>
+  </div>
+</footer>
+
+<script>
+function copyCode(btn) {
+  const code = btn.closest(".code-block").querySelector(".cb-body").innerText;
+  navigator.clipboard.writeText(code).then(() => {
+    btn.textContent = "Copied!";
+    setTimeout(() => btn.textContent = "Copy", 1800);
+  });
+}
+</script>
+</body>
+</html>
