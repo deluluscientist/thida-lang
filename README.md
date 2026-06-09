@@ -1,5 +1,7 @@
 # Thida Lang 1.2 — Beta
 
+![Thida Lang Cover](cover.png)
+
 **A Myanmar grammar-based programming language for data analysis.**
 
 Thida Lang lets you write data analysis code using natural Myanmar sentence structure — every statement ends with a descriptive Burmese verb, making programs readable as plain Burmese text.
