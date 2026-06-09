@@ -20,6 +20,66 @@
   --sidebar-w: 260px;
 }
 
+/* ── LIGHT THEME ────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:     #f5f7fb;
+  --bg2:    #ffffff;
+  --bg3:    #edf0f7;
+  --bg4:    #e2e6f0;
+  --border: #cdd3e0;
+  --text:   #374151;
+  --dim:    #6b7280;
+  --bright: #111827;
+  --accent: #2563eb;
+  --accent2: #059669;
+  --pink:   #db2777;
+  --yellow: #b45309;
+}
+
+[data-theme="light"] .nav {
+  background: rgba(245,247,251,.94);
+}
+
+[data-theme="light"] .hero-cover {
+  box-shadow: 0 24px 60px rgba(0,0,0,.12);
+}
+
+[data-theme="light"] .cb-body { color: #1a1a1a; }
+[data-theme="light"] .cb-body .kw   { color: #7c00d4; }
+[data-theme="light"] .cb-body .verb { color: #0d7c45; }
+[data-theme="light"] .cb-body .str  { color: #c2410c; }
+[data-theme="light"] .cb-body .num  { color: #1d4ed8; }
+[data-theme="light"] .cb-body .op   { color: #0891b2; }
+[data-theme="light"] .cb-body .cmt  { color: #6b7280; }
+
+[data-theme="light"] .ds-link.active {
+  background: rgba(37,99,235,.07);
+}
+
+[data-theme="light"] .contrib-card.creator {
+  border-color: var(--accent);
+  background: rgba(37,99,235,.04);
+}
+
+/* ── THEME BUTTON ───────────────────────────────────── */
+.theme-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--dim);
+  width: 34px; height: 34px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .15s, color .15s, background .15s;
+  flex-shrink: 0;
+}
+.theme-btn:hover {
+  border-color: var(--accent);
+  color: var(--bright);
+  background: var(--bg4);
+}
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-ui); background: var(--bg); color: var(--text);
