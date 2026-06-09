@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="my" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Thida 1.2 IDE — Myanmar Data Language</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.17/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.17/theme/one-dark.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.17/theme/eclipse.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.17/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.17/addon/edit/matchbrackets.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.17/addon/edit/closebrackets.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.17/addon/selection/active-line.js"></script>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- ═══ TOOLBAR ═══════════════════════════════════════════════════════════ -->
+<div class="toolbar">
+  <div class="tb-brand">
+    <span class="tb-flag">🇲🇲</span>
+    <span class="tb-name">Thida</span>
+    <span class="tb-ver">1.2</span>
+  </div>
+
+  <div class="tb-group">
+    <button class="tb-btn" onclick="newFile()" title="New (Ctrl+N)">
+      <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M9 1H3a1 1 0 00-1 1v12a1 1 0 001 1h10a1 1 0 001-1V5L9 1zm0 1.5L12.5 5H9V2.5z"/></svg>
+      New
+    </button>
+    <button class="tb-btn" onclick="saveFile()" title="Save (Ctrl+S)">
+      <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M2 1a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V4.5L10.5 1H2zm5 11a2 2 0 110-4 2 2 0 010 4zm3-8V2.5l2.5 2.5H10V4z"/></svg>
+      Save
+    </button>
+    <select id="file-select" class="tb-select" onchange="loadSelectedFile(this.value)" title="Open saved file">
+      <option value="">— Open file —</option>
+    </select>
+    <div class="tb-sep"></div>
+    <button class="tb-run-btn" onclick="runCode()" id="run-btn" title="Ctrl+Enter">
+      <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><polygon points="3,2 14,8 3,14"/></svg>
+      Run
+    </button>
+    <button class="tb-btn" onclick="clearAll()" title="Clear output">
+      <svg viewBox="0 0 16 16" fill="currentColor" width="13" height="13"><path d="M5 3l1-1h4l1 1h3v1H2V3h3zm1 2h4v8H6V5zM3 5h1v8H3V5zm9 0h1v8h-1V5z"/></svg>
+      Clear
+    </button>
+    <div class="tb-sep"></div>
+    <button class="tb-btn" onclick="toggleTheme()" id="theme-btn" title="Toggle theme">☾</button>
+    <button class="tb-btn" onclick="toggleSidebar()" title="Toggle sidebar (Ctrl+B)">☰</button>
+  </div>
+
+  <div class="tb-status">
+    <span class="run-dot" id="run-dot"></span>
+    <span id="run-text">Ready</span>
+    <span class="tb-sep-v"></span>
+    <span id="tb-cursor">Ln 1, Col 1</span>
+    <span class="tb-sep-v"></span>
+    <span id="tb-filename">untitled.thida</span>
+    <span id="tb-dirty" style="display:none;color:#ffd740"> ●</span>
+  </div>
+</div>
+
+<!-- ═══ BODY ═══════════════════════════════════════════════════════════════ -->
+<div class="ide-body">
+
+  <!-- LEFT SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <div class="stabs">
+      <button class="stab active" data-v="files"    onclick="switchSidebar(this)">Files</button>
+      <button class="stab"        data-v="datasets" onclick="switchSidebar(this)">Data</button>
+      <button class="stab"        data-v="snippets" onclick="switchSidebar(this)">Snippets</button>
+    </div>
+
+    <!-- Files -->
+    <div class="sv active" id="sv-files">
+      <div class="sv-hdr">WORKSPACE <button class="sv-add" onclick="newFile()">＋</button></div>
+      <div id="tree-workspace"></div>
+      <div class="sv-hdr" style="margin-top:4px">EXAMPLES</div>
+      <div id="tree-examples"></div>
+      <div class="sv-hdr" style="margin-top:4px">DOCS</div>
+      <div id="tree-docs"></div>
+    </div>
+
+    <!-- Datasets -->
+    <div class="sv" id="sv-datasets">
+      <div class="sv-hdr">UPLOAD</div>
+      <div class="upload-zone" id="upload-zone">
+        <div class="uz-icon">⬆</div>
+        <div>Drop CSV / Excel or click</div>
+        <input type="file" id="file-input" accept=".csv,.xlsx,.xls" style="display:none">
+      </div>
+      <div id="upload-msg" style="padding:4px 10px;font-size:.75rem;"></div>
+      <div class="sv-hdr">AVAILABLE</div>
+      <div id="dataset-list"></div>
+    </div>
+
+    <!-- Snippets -->
+    <div class="sv" id="sv-snippets">
+      <div class="sv-hdr">QUICK SNIPPETS <span style="font-weight:400;font-size:.7rem">(click to insert)</span></div>
+      <div id="snippet-list"></div>
+    </div>
+  </div>
+
+  <!-- 4-PANEL GRID -->
+  <div class="panels" id="panels">
+
+    <!-- Top row -->
+    <div class="panel" id="panel-editor">
+      <div class="phead">
+        <span class="phead-icon">📝</span>
+        <span class="phead-title" id="phead-filename">untitled.thida</span>
+        <span id="phead-dirty" style="display:none;color:#ffd740;margin-left:4px">●</span>
+        <div class="phead-actions">
+          <button class="ph-btn accent" onclick="runCode()">▶ Run</button>
+          <button class="ph-btn" onclick="toggleComment()">// </button>
+        </div>
+      </div>
+      <div class="pbody" id="editor-mount"></div>
+    </div>
+
+    <div class="vresize" id="vresize"></div>
+
+    <div class="panel" id="panel-data">
+      <div class="phead">
+        <!-- Panel-mode switcher: Data vs Docs -->
+        <div class="right-panel-tabs">
+          <button class="rpt active" id="rpt-data" onclick="switchRightPanel('data')">🗃 Data</button>
+          <button class="rpt"        id="rpt-docs" onclick="switchRightPanel('docs')">📖 Docs</button>
+        </div>
+        <!-- Dataset sub-tabs (shown only in data mode) -->
+        <div class="phead-actions" id="data-tab-btns"></div>
+        <!-- Docs toolbar (shown only in docs mode) -->
+        <div class="phead-actions" id="docs-toolbar" style="display:none">
+          <button class="ph-btn accent" id="docs-insert-btn" onclick="insertDocToEditor()" style="display:none">↑ Insert to Editor</button>
+          <button class="ph-btn" onclick="clearDocView()">✕ Close</button>
+        </div>
+      </div>
+
+      <!-- DATA VIEW -->
+      <div class="pbody data-pbody" id="data-body">
+        <div class="pempty">
+          <div class="pe-icon">🗃</div>
+          <div class="pe-msg">Load a dataset to view it here</div>
+          <div class="pe-hint"><code>("students") ကိုဖတ်ပါ</code></div>
+        </div>
+      </div>
+
+      <!-- DOCS VIEW (hidden by default) -->
+      <div class="pbody doc-pbody" id="doc-body" style="display:none">
+        <div class="pempty" id="doc-empty">
+          <div class="pe-icon">📖</div>
+          <div class="pe-msg">Click a doc in the sidebar to read it here</div>
+          <div class="pe-hint">Your code editor stays untouched</div>
+        </div>
+        <!-- Read-only CodeMirror mounted here -->
+        <div id="doc-editor-mount" style="height:100%;display:none"></div>
+      </div>
+    </div>
+
+    <!-- Horizontal resize bar -->
+    <div class="hresize" id="hresize"></div>
+
+    <!-- Bottom row -->
+    <div class="panel" id="panel-console">
+      <div class="phead">
+        <span class="phead-icon">⬛</span>
+        <span class="phead-title">Console</span>
+        <div class="phead-actions">
+          <button class="ph-btn" onclick="clearConsole()">Clear</button>
+        </div>
+      </div>
+      <div class="pbody console-pbody" id="console-body">
+        <div class="console-welcome">Thida 1.2 IDE — Myanmar Data Language<br>Press <strong>▶ Run</strong> or <kbd>Ctrl+Enter</kbd> to execute code.</div>
+      </div>
+    </div>
+
+    <div class="vresize vresize-bottom" id="vresize2"></div>
+
+    <div class="panel" id="panel-plots">
+      <div class="phead">
+        <span class="phead-icon">📊</span>
+        <span class="phead-title">Plots</span>
+        <span class="plot-badge" id="plot-badge" style="display:none">0</span>
+        <div class="phead-actions">
+          <button class="ph-btn" onclick="clearPlots()">Clear</button>
+        </div>
+      </div>
+      <div class="pbody plots-pbody" id="plots-body">
+        <div class="pempty" id="plots-empty">
+          <div class="pe-icon">📊</div>
+          <div class="pe-msg">Charts appear here after running</div>
+          <div class="pe-hint">scatter_plot · histogram · bar_chart · line_chart · box_plot</div>
+        </div>
+        <div class="plots-grid" id="plots-grid"></div>
+      </div>
+    </div>
+
+  </div><!-- /panels -->
+</div><!-- /ide-body -->
+
+<!-- Save As dialog -->
+<div class="overlay" id="save-overlay" style="display:none" onclick="closeSaveAs()">
+  <div class="dialog" onclick="event.stopPropagation()">
+    <div class="dlg-title">Save As</div>
+    <input class="dlg-input" id="save-filename" placeholder="myanalysis.thida"
+           onkeydown="if(event.key==='Enter')doSave()">
+    <div class="dlg-btns">
+      <button class="dlg-btn" onclick="closeSaveAs()">Cancel</button>
+      <button class="dlg-btn primary" onclick="doSave()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/editor.js"></script>
+</body>
+</html>

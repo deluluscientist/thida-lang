@@ -1,0 +1,12 @@
+/* Thida 1.2 — Linear Regression Model Demo */
+
+("housing.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+/* Define model: price ~ size + bedrooms */
+("housing" > "price" ~ "size" + "bedrooms") ကို linear_model အဖြစ်သတ်မှတ်ပါ
+
+/* Train on full dataset */
+("price_model" , "housing") ကို train လုပ်ပါ
+
+/* Predict on same data */
+("price_model" , "housing") ကို ခန့်မှန်းပါ

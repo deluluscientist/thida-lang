@@ -1,0 +1,90 @@
+/* ═══════════════════════════════════════════════════════════════════
+   THIDA 1.2 — Syntax Reference Card — ပြည့်စုံသော Syntax စာရင်း
+   ═══════════════════════════════════════════════════════════════════
+   Run this file to see every command demonstrated live.
+   ဤဖိုင်ကို Run လုပ်ပါက command အားလုံး၏ ရလဒ်ကိုမြင်ရမည်
+   ═══════════════════════════════════════════════════════════════════ */
+
+
+/* ╔═══════════════════════════════════════════╗
+   ║  SECTION 1 — OUTPUT & VARIABLES           ║
+   ╚═══════════════════════════════════════════╝ */
+
+("--- OUTPUT & VARIABLES ---") ကိုအဖြေထုတ်ပါ
+
+/* Print */
+("Hello Thida!") ကိုအဖြေထုတ်ပါ
+(999) ကိုအဖြေထုတ်ပါ
+
+/* Assign */
+(100) ကို score ဟု သတ်မှတ်ပါ
+("Myanmar") ကို country ဟု သတ်မှတ်ပါ
+
+/* Show variable */
+(score) ကို ဖော်ပြပါ
+(country) ကို ဖော်ပြပါ
+
+
+/* ╔═══════════════════════════════════════════╗
+   ║  SECTION 2 — LOAD DATA                    ║
+   ╚═══════════════════════════════════════════╝ */
+
+("--- LOAD DATA ---") ကိုအဖြေထုတ်ပါ
+
+("students.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+("sales.csv"    , file type = csv , safe copy = true) ကိုဖတ်ပါ
+("health.csv"   , file type = csv , safe copy = true) ကိုဖတ်ပါ
+("housing.csv"  , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+
+/* ╔═══════════════════════════════════════════╗
+   ║  SECTION 3 — INSPECT                      ║
+   ╚═══════════════════════════════════════════╝ */
+
+("--- INSPECT students ---") ကိုအဖြေထုတ်ပါ
+
+("students") ရဲ့ Header ဖော်ပြပါ
+("students") ရဲ့ အမျိုးအစားများ ဖော်ပြပါ
+("students") ရဲ့ အစပိုင်း "3" လိုင်းဖော်ပြပါ
+("students") အကျဥ်းချုပ် ဖော်ပြပါ
+
+
+/* ╔═══════════════════════════════════════════╗
+   ║  SECTION 4 — STATISTICS                   ║
+   ╚═══════════════════════════════════════════╝ */
+
+("--- STATISTICS ---") ကိုအဖြေထုတ်ပါ
+
+("students" > "Math") mean ကိုဖော်ပြပါ
+("students" > "Math") max ကိုဖော်ပြပါ
+("students" > "Math") min ကိုဖော်ပြပါ
+("students" > "Grade") mode ကိုဖော်ပြပါ
+("students" ရဲ့ "City") frequency ကိုဖော်ပြပါ
+("students" > group by "City" , mean "Math") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+/* ╔═══════════════════════════════════════════╗
+   ║  SECTION 5 — CLEANING                     ║
+   ╚═══════════════════════════════════════════╝ */
+
+("--- CLEANING ---") ကိုအဖြေထုတ်ပါ
+
+("students" > "missing values") အရေအတွက်ကို ဖော်ပြပါ
+("students" > missing values = "mean") အဖြစ် ဖော်ပြပါ
+("students" > "StudentID") ဖျက်ပေးပါ
+("students" > "Math" to "MathScore") နာမည်ပြောင်းပါ
+("students" > "Total" , newcolumn = Science + English) Column အသစ်လုပ်ပါ
+("students" > "Grade" == "A") ကိုခွဲထုတ်ပါ
+("students" > "MathScore") ကို တန်ဖိုးကြီးစဥ် စီပေးပါ
+("students" > "Age") ကို တန်ဖိုးငယ်စဥ် စီပေးပါ
+("students") ထဲက အချက်အလက်မပြည့်စုံတာတွေကို ဖယ်ရှားပါ
+
+
+/* ╔═══════════════════════════════════════════╗
+   ║  SECTION 6 — SAVE                         ║
+   ╚═══════════════════════════════════════════╝ */
+
+("--- SAVE ---") ကိုအဖြေထုတ်ပါ
+
+(students) ကို students_final အဖြစ် သိမ်းဆည်းပါ
+(students_final) ကို ဖော်ပြပါ

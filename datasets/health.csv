@@ -1,0 +1,21 @@
+PatientID,Name,Age,Gender,Weight_kg,Height_cm,BMI,BloodPressure,Cholesterol,BloodSugar,Diagnosis,Smoker,Exercise_hrs_week
+P001,Daw Khin,45,Female,62,158,24.8,120,185,95,Normal,No,3
+P002,U Thant,52,Male,85,170,29.4,145,240,110,Hypertension,Yes,1
+P003,Ma Hnin,38,Female,55,162,20.9,115,175,88,Normal,No,5
+P004,Ko Zin,60,Male,92,168,32.6,155,270,130,Diabetes,Yes,0
+P005,Daw Myint,48,Female,70,155,29.1,135,220,105,Pre-diabetes,No,2
+P006,U Kyaw,35,Male,75,175,24.5,118,190,92,Normal,No,4
+P007,Ma Win,55,Female,68,160,26.6,140,235,115,Hypertension,No,1
+P008,Ko Aung,42,Male,80,172,27.0,128,205,98,Normal,Yes,2
+P009,Daw San,65,Female,58,152,25.1,148,255,125,Hypertension,No,0
+P010,U Hla,50,Male,95,165,34.9,160,280,140,Diabetes,Yes,0
+P011,Ma Aye,32,Female,52,163,19.6,112,168,85,Normal,No,6
+P012,Ko Min,58,Male,78,168,27.6,138,228,108,Pre-diabetes,No,2
+P013,Daw Nwe,44,Female,65,157,26.4,125,198,96,Normal,No,3
+P014,U Sein,70,Male,72,162,27.4,158,265,135,Diabetes,Yes,1
+P015,Ma Phyu,28,Female,48,160,18.8,108,162,82,Normal,No,7
+P016,Ko Htun,55,Male,88,173,29.4,142,242,112,Hypertension,Yes,1
+P017,Daw Yi,62,Female,75,155,31.2,152,258,128,Diabetes,No,0
+P018,U Win,40,Male,70,170,24.2,120,188,91,Normal,No,4
+P019,Ma Mya,36,Female,60,158,24.0,116,178,89,Normal,No,5
+P020,Ko Tun,48,Male,83,167,29.8,137,232,109,Pre-diabetes,Yes,1

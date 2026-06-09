@@ -1,0 +1,94 @@
+/* ═══════════════════════════════════════════════════════════════════
+   THIDA 1.2 — သင်ခန်းစာ ၉ — Data Visualization
+   LESSON 9 — All Chart Types with Built-in Datasets
+   ═══════════════════════════════════════════════════════════════════
+
+   Chart types available in Thida 1.2:
+     scatter_plot  — ကိန်းဂဏန်းနှစ်ခုကြားဆက်နွှယ်မှု
+     histogram     — တစ်ခု column ၏ ဖြန့်ဆင်မှု
+     bar_chart     — အုပ်စုလိုက် ခြင်းတိုင်းချပုံ
+     line_chart    — ကြောင်းပြပုံ (trend)
+     box_plot      — ကိုက်ကွာမှု + outliers
+
+   Syntax summary:
+     ("ds" > x = "col_a" , y = "col_b")       ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ
+     ("ds" > group by "col" , plot = "histogram") ကို ပုံဆွဲပေးပါ
+     ("ds" > x = "col_a" , y = "col_b")       ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ
+     ("ds" > x = "col_a" , y = "col_b")       ကို line_chart အဖြစ် ပုံဆွဲပေးပါ
+     ("ds" > column = "col")                   ကို box_plot အဖြစ် ပုံဆွဲပေးပါ
+   ═══════════════════════════════════════════════════════════════════ */
+
+
+/* ── Load all built-in datasets ─────────────────────────────────────── */
+
+("students.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+("sales.csv"    , file type = csv , safe copy = true) ကိုဖတ်ပါ
+("health.csv"   , file type = csv , safe copy = true) ကိုဖတ်ပါ
+("housing.csv"  , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+
+/* ══════════════════════════════════════════════
+   SCATTER PLOTS — ကိန်းဂဏန်းဆက်နွှယ်မှု
+   ══════════════════════════════════════════════ */
+
+/* Math vs Science ရမှတ် ဆက်နွှယ်မှု */
+("students" > x = "Math" , y = "Science") ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ
+
+/* BMI vs Blood Pressure ဆက်နွှယ်မှု */
+("health" > x = "BMI" , y = "BloodPressure") ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ
+
+/* အိမ်ဆိုဒ် vs ဈေးနှုန်း ဆက်နွှယ်မှု */
+("housing" > x = "Size_sqft" , y = "Price_MMK") ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ
+
+
+/* ══════════════════════════════════════════════
+   HISTOGRAMS — ဖြန့်ဆင်မှုပုံ
+   ══════════════════════════════════════════════ */
+
+/* ကျောင်းသားများ Math ရမှတ်ဖြန့်ဆင်မှု */
+("students" > group by "Math" , plot = "histogram") ကို ပုံဆွဲပေးပါ
+
+/* ကျန်းမာရေးစစ်ဆေးသူများ BMI ဖြန့်ဆင်မှု */
+("health" > group by "BMI" , plot = "histogram") ကို ပုံဆွဲပေးပါ
+
+/* ရောင်းချမှုဝင်ငွေ ဖြန့်ဆင်မှု */
+("sales" > group by "Revenue" , plot = "histogram") ကို ပုံဆွဲပေးပါ
+
+
+/* ══════════════════════════════════════════════
+   BAR CHARTS — ခြင်းတိုင်းချပုံ
+   ══════════════════════════════════════════════ */
+
+/* မြို့တစ်မြို့စီ၏ Math ပျမ်းမျှ */
+("students" > x = "City" , y = "Math") ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ
+
+/* Diagnosis တစ်ခုချင်းစီ၏ ပျမ်းမျှ BMI */
+("health" > x = "Diagnosis" , y = "BMI") ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ
+
+/* Product တစ်ခုချင်းစီ၏ ပျမ်းမျှ Revenue */
+("sales" > x = "Product" , y = "Revenue") ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ
+
+/* မြို့တစ်မြို့စီ၏ ပျမ်းမျှ အိမ်ဈေးနှုန်း */
+("housing" > x = "City" , y = "Price_MMK") ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ
+
+
+/* ══════════════════════════════════════════════
+   LINE CHARTS — ကြောင်းပြ Trend ပုံ
+   ══════════════════════════════════════════════ */
+
+/* Sales Revenue လစဥ် trend */
+("sales" > x = "Month" , y = "Revenue") ကို line_chart အဖြစ် ပုံဆွဲပေးပါ
+
+
+/* ══════════════════════════════════════════════
+   BOX PLOTS — ကိုက်ကွာမှုပုံ
+   ══════════════════════════════════════════════ */
+
+/* ကျောင်းသားများ Math ရမှတ် ကိုက်ကွာမှု */
+("students" > column = "Math") ကို box_plot အဖြစ် ပုံဆွဲပေးပါ
+
+/* Grade တစ်ခုချင်းစီ Math ရမှတ် ကိုက်ကွာမှုနှိုင်းယှဉ်ခြင်း */
+("students" > column = "Math" , group by = "Grade") ကို box_plot အဖြစ် ပုံဆွဲပေးပါ
+
+/* Diagnosis တစ်ခုချင်း BMI ကိုက်ကွာမှု */
+("health" > column = "BMI" , group by = "Diagnosis") ကို box_plot အဖြစ် ပုံဆွဲပေးပါ

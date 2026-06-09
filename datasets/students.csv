@@ -1,0 +1,21 @@
+StudentID,Name,Age,Gender,Math,Science,English,Grade,City,Passed
+1,Aye Aye,16,Female,88,92,85,A,Yangon,True
+2,Ko Ko,17,Male,72,68,75,B,Mandalay,True
+3,Nwe Nwe,16,Female,95,97,93,A,Yangon,True
+4,Min Min,18,Male,55,60,58,C,Naypyidaw,True
+5,Su Su,17,Female,78,82,80,B,Yangon,True
+6,Aung Aung,16,Male,91,88,90,A,Mandalay,True
+7,Thin Thin,17,Female,63,70,67,C,Mawlamyine,True
+8,Zaw Zaw,18,Male,48,52,45,D,Yangon,False
+9,Ma Ma,16,Female,84,79,88,B,Yangon,True
+10,Kyaw Kyaw,17,Male,76,74,72,B,Mandalay,True
+11,Phyu Phyu,18,Female,92,95,91,A,Naypyidaw,True
+12,Htet Htet,16,Male,61,65,59,C,Yangon,True
+13,Ei Ei,17,Female,87,84,89,A,Mandalay,True
+14,Wai Wai,18,Male,43,50,47,D,Yangon,False
+15,Lin Lin,16,Female,79,81,76,B,Mawlamyine,True
+16,Naing Naing,17,Male,96,94,97,A,Yangon,True
+17,Hnin Hnin,18,Female,70,73,68,B,Mandalay,True
+18,Thurein,16,Male,58,55,62,C,Naypyidaw,True
+19,Myat Myat,17,Female,83,86,84,A,Yangon,True
+20,Pyae Pyae,18,Male,67,71,65,C,Mandalay,True

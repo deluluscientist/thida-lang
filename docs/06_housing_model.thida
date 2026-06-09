@@ -1,0 +1,74 @@
+/* ═══════════════════════════════════════════════════════════════════
+   THIDA 1.2 — သင်ခန်းစာ ၆ — Linear Regression Model
+   LESSON 6 — Machine Learning: Housing Price Prediction
+   ═══════════════════════════════════════════════════════════════════
+
+   Built-in dataset: housing.csv
+   Columns: HouseID, Township, City, Bedrooms, Bathrooms,
+            Size_sqft, Floor, Age_years, Garage, Garden,
+            Price_MMK, PricePerSqft, Condition
+
+   ဤသင်ခန်းစာတွင် housing dataset ကိုသုံး၍
+   Linear Regression model တည်ဆောက်မည်:
+     Price_MMK ~ Size_sqft + Bedrooms + Bathrooms
+
+   Workflow: Define → Train → Evaluate → Predict
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Step 1: ဒေတာတင်သွင်းပြီး ကြည့်ရှုခြင်း ─────────────────────── */
+
+("housing.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+("housing") ရဲ့ Header ဖော်ပြပါ
+("housing") ရဲ့ အစပိုင်း "5" လိုင်းဖော်ပြပါ
+("housing") အကျဥ်းချုပ် ဖော်ပြပါ
+
+
+/* ── Step 2: Missing Values စစ်ဆေးပြီး ဖြည့်ခြင်း ──────────────── */
+
+("housing" > "missing values") အရေအတွက်ကို ဖော်ပြပါ
+("housing" > missing values = "mean") အဖြစ် ဖော်ပြပါ
+
+
+/* ── Step 3: Price နှင့် Size ဆက်နွှယ်မှုကြည့်ခြင်း ─────────────── */
+
+("housing" > "Price_MMK") mean ကိုဖော်ပြပါ
+("housing" > "Price_MMK") max ကိုဖော်ပြပါ
+("housing" > "Price_MMK") min ကိုဖော်ပြပါ
+
+/* မြို့တစ်မြို့စီ၏ ပျမ်းမျှတန်ဖိုး */
+("housing" > group by "City" , mean "Price_MMK") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+/* အခြေအနေတစ်ခုချင်းစီ၏ ပျမ်းမျှတန်ဖိုး */
+("housing" > group by "Condition" , mean "Price_MMK") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+/* ── Step 4: Model Define လုပ်ခြင်း ─────────────────────────────────
+
+   ပုံစံ: ("dataset" > "target" ~ "feature1" + "feature2")
+          ကို model_name linear_model အဖြစ်သတ်မှတ်ပါ
+
+   R-style formula: target ~ feature1 + feature2 + ...         */
+
+("housing" > "Price_MMK" ~ "Size_sqft" + "Bedrooms" + "Bathrooms") ကို house_model linear_model အဖြစ်သတ်မှတ်ပါ
+
+
+/* ── Step 5: Model Train လုပ်ခြင်း ─────────────────────────────────
+
+   ပုံစံ: ("model_name" , "dataset") ကို train လုပ်ပါ
+
+   Output တွင် R², RMSE, Coefficients ဖော်ပြပေးသည်            */
+
+("house_model" , "housing") ကို train လုပ်ပါ
+
+
+/* ── Step 6: Prediction ─────────────────────────────────────────────
+
+   ပုံစံ: ("model_name" , "dataset") ကို ခန့်မှန်းပါ
+
+   ကျန်ဒေတာကို input ထည့်၍ ခန့်မှန်းကိန်းများ ထုတ်ယူနိုင်သည်   */
+
+("house_model" , "housing") ကို ခန့်မှန်းပါ
+
+/* predictions variable ထဲတွင် ခန့်မှန်းကိန်းများ သိမ်းဆည်းထားသည် */
+(predictions) ကို ဖော်ပြပါ

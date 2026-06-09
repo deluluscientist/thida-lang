@@ -1,0 +1,49 @@
+/* ─────────────────────────────────────────────────────────
+   Thida 1.2 — Full Data Analysis Example
+   Demonstrates: load, inspect, clean, analyse, visualise
+   ───────────────────────────────────────────────────────── */
+
+/* 1. Load the dataset */
+("sales_data.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+/* 2. Inspect */
+("sales_data") ရဲ့ Header ဖော်ပြပါ
+("sales_data") ရဲ့ အစပိုင်း "5" လိုင်းဖော်ပြပါ
+("sales_data") အကျဥ်းချုပ် ဖော်ပြပါ
+("sales_data") ရဲ့ အမျိုးအစားများ ဖော်ပြပါ
+
+/* 3. Missing value check */
+("sales_data" > "missing values") အရေအတွက်ကို ဖော်ပြပါ
+
+/* 4. Fill missing values with mean */
+("sales_data" > missing values = "mean") အဖြစ် ဖော်ပြပါ
+
+/* 5. Statistical functions */
+("sales_data" > "Revenue") mean ကိုဖော်ပြပါ
+("sales_data" > "Revenue") max ကိုဖော်ပြပါ
+("sales_data" > "Revenue") min ကိုဖော်ပြပါ
+("sales_data" > "Region") mode ကိုဖော်ပြပါ
+
+/* 6. Frequency table */
+("sales_data" ရဲ့ "Region") frequency ကိုဖော်ပြပါ
+
+/* 7. Group by */
+("sales_data" > group by "Region" , mean "Revenue") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+/* 8. Filter high revenue rows */
+("sales_data" > "Revenue" == 5000) ကိုခွဲထုတ်ပါ
+
+/* 9. Sort descending */
+("sales_data" > "Revenue") ကို တန်ဖိုးကြီးစဥ် စီပေးပါ
+
+/* 10. Rename column */
+("sales_data" > "Rev" to "Revenue_USD") နာမည်ပြောင်းပါ
+
+/* 11. New derived column */
+("sales_data" > "Tax" , newcolumn = Revenue * 0.1) Column အသစ်လုပ်ပါ
+
+/* 12. Drop a column */
+("sales_data" > "Temp") ဖျက်ပေးပါ
+
+/* 13. Drop rows with any missing values */
+("sales_data") ထဲက အချက်အလက်မပြည့်စုံတာတွေကို ဖယ်ရှားပါ

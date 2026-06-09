@@ -1,0 +1,64 @@
+/* ═══════════════════════════════════════════════════════════════════
+   THIDA 1.2 — သင်ခန်းစာ ၅ — ရောင်းချမှုဒေတာ ခွဲခြမ်းစိတ်ဖြာခြင်း
+   LESSON 5 — Real-World: Sales Data Analysis
+   ═══════════════════════════════════════════════════════════════════
+
+   Built-in dataset: sales.csv
+   Columns: OrderID, Product, Category, Region, Units,
+            UnitPrice, Revenue, Month, Quarter, SalesRep
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Step 1: ဒေတာတင်သွင်းပြီး ကြည့်ရှုခြင်း ─────────────────────── */
+
+("sales.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+("sales") ရဲ့ Header ဖော်ပြပါ
+("sales") ရဲ့ အစပိုင်း "5" လိုင်းဖော်ပြပါ
+("sales") အကျဥ်းချုပ် ဖော်ပြပါ
+
+
+/* ── Step 2: Revenue စာရင်းအင်း ────────────────────────────────────── */
+
+("sales" > "Revenue") mean ကိုဖော်ပြပါ
+("sales" > "Revenue") max ကိုဖော်ပြပါ
+("sales" > "Revenue") min ကိုဖော်ပြပါ
+
+
+/* ── Step 3: မည်သည့် Category က အများဆုံးရောင်းရသနည်း ─────────────── */
+
+("sales" ရဲ့ "Category") frequency ကိုဖော်ပြပါ
+
+
+/* ── Step 4: Region တစ်ခုချင်းစီ၏ ဝင်ငွေပျမ်းမျှ ───────────────────── */
+
+("sales" > group by "Region" , mean "Revenue") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+/* ── Step 5: Quarter တစ်ခုချင်းစီ၏ ဝင်ငွေပေါင်းစုပ် ─────────────────── */
+
+("sales" > group by "Quarter" , sum "Revenue") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+/* ── Step 6: Product တစ်ခုချင်းစီ၏ ပျမ်းမျှ ────────────────────────── */
+
+("sales" > group by "Product" , mean "Revenue") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+/* ── Step 7: Revenue အမြင့်ဆုံးမှ စီထားကြည့်ခြင်း ─────────────────── */
+
+("sales" > "Revenue") ကို တန်ဖိုးကြီးစဥ် စီပေးပါ
+
+
+/* ── Step 8: Electronics Category သာစစ်ထုတ်ကြည့်ခြင်း ─────────────── */
+
+("sales" > "Category" == "Electronics") ကိုခွဲထုတ်ပါ
+
+
+/* ── Step 9: Profit Margin column အသစ်ဖန်တီးခြင်း ─────────────────── */
+
+("sales" > "ProfitEstimate" , newcolumn = Revenue * 0.2) Column အသစ်လုပ်ပါ
+
+
+/* ── Step 10: Data အမျိုးအစားများ ─────────────────────────────────── */
+
+("sales") ရဲ့ အမျိုးအစားများ ဖော်ပြပါ

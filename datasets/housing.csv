@@ -1,0 +1,25 @@
+HouseID,Township,City,Bedrooms,Bathrooms,Size_sqft,Floor,Age_years,Garage,Garden,Price_MMK,PricePerSqft,Condition
+H001,Hlaing,Yangon,3,2,1200,5,8,Yes,No,250000000,208333,Good
+H002,Kamayut,Yangon,2,1,850,3,15,No,No,180000000,211765,Fair
+H003,Bahan,Yangon,4,3,1800,8,5,Yes,Yes,520000000,288889,Excellent
+H004,Chanmyathazi,Mandalay,3,2,1100,2,12,Yes,Yes,130000000,118182,Good
+H005,Ahlone,Yangon,2,1,780,4,20,No,No,155000000,198718,Fair
+H006,Pyigyitagon,Mandalay,4,3,1600,1,3,Yes,Yes,280000000,175000,Excellent
+H007,Sanchaung,Yangon,3,2,1050,6,10,No,No,210000000,200000,Good
+H008,Maha Aungmye,Mandalay,2,1,900,3,18,No,Yes,115000000,127778,Fair
+H009,Yankin,Yangon,5,4,2200,10,2,Yes,Yes,680000000,309091,Excellent
+H010,Pabedan,Yangon,3,2,1300,7,14,Yes,No,240000000,184615,Good
+H011,Amarapura,Mandalay,3,2,1150,1,6,Yes,Yes,145000000,126087,Good
+H012,Dagon,Yangon,2,1,820,5,22,No,No,148000000,180488,Fair
+H013,Insein,Yangon,4,2,1500,3,9,Yes,Yes,320000000,213333,Good
+H014,Chanayethazan,Mandalay,3,2,1200,4,7,Yes,No,160000000,133333,Good
+H015,Tamwe,Yangon,3,2,1100,6,16,No,No,195000000,177273,Fair
+H016,Mahlaing,Mandalay,2,1,750,2,25,No,No,88000000,117333,Poor
+H017,South Okkalapa,Yangon,4,3,1700,4,4,Yes,Yes,380000000,223529,Excellent
+H018,Pyigyitagon,Mandalay,3,2,1250,1,1,Yes,Yes,220000000,176000,Excellent
+H019,Thingangyun,Yangon,3,2,1180,7,11,No,No,218000000,184746,Good
+H020,Myothit,Mandalay,4,3,1550,2,8,Yes,Yes,255000000,164516,Good
+H021,Mingaladon,Yangon,3,2,1300,1,6,Yes,Yes,285000000,219231,Good
+H022,Mahaaungmye,Mandalay,2,2,950,3,13,No,No,125000000,131579,Fair
+H023,Shwepyithar,Yangon,4,2,1450,2,3,Yes,No,310000000,213793,Good
+H024,Chanmyathazi,Mandalay,5,4,2000,1,2,Yes,Yes,360000000,180000,Excellent

@@ -1,0 +1,25 @@
+OrderID,Product,Category,Region,Units,UnitPrice,Revenue,Month,Quarter,SalesRep
+1001,Laptop,Electronics,Yangon,5,850000,4250000,January,Q1,Mg Mg
+1002,Notebook,Stationery,Mandalay,120,1500,180000,January,Q1,Su Su
+1003,Phone,Electronics,Yangon,8,350000,2800000,February,Q1,Ko Ko
+1004,Pen Set,Stationery,Naypyidaw,200,2500,500000,February,Q1,Aye Aye
+1005,Tablet,Electronics,Mandalay,3,450000,1350000,March,Q1,Mg Mg
+1006,Desk,Furniture,Yangon,10,120000,1200000,March,Q1,Nwe Nwe
+1007,Chair,Furniture,Mandalay,15,95000,1425000,April,Q2,Ko Ko
+1008,Monitor,Electronics,Yangon,6,280000,1680000,April,Q2,Su Su
+1009,Keyboard,Electronics,Naypyidaw,25,35000,875000,May,Q2,Aye Aye
+1010,Printer,Electronics,Yangon,4,320000,1280000,May,Q2,Mg Mg
+1011,Paper Ream,Stationery,Mandalay,500,3500,1750000,June,Q2,Nwe Nwe
+1012,Bookshelf,Furniture,Yangon,7,185000,1295000,June,Q2,Ko Ko
+1013,Laptop,Electronics,Naypyidaw,3,850000,2550000,July,Q3,Su Su
+1014,Phone,Electronics,Mandalay,10,350000,3500000,July,Q3,Aye Aye
+1015,Notebook,Stationery,Yangon,300,1500,450000,August,Q3,Mg Mg
+1016,Chair,Furniture,Naypyidaw,20,95000,1900000,August,Q3,Nwe Nwe
+1017,Tablet,Electronics,Yangon,5,450000,2250000,September,Q3,Ko Ko
+1018,Monitor,Electronics,Mandalay,8,280000,2240000,October,Q4,Su Su
+1019,Desk,Furniture,Yangon,12,120000,1440000,October,Q4,Aye Aye
+1020,Laptop,Electronics,Mandalay,7,850000,5950000,November,Q4,Mg Mg
+1021,Pen Set,Stationery,Yangon,400,2500,1000000,November,Q4,Nwe Nwe
+1022,Printer,Electronics,Naypyidaw,6,320000,1920000,December,Q4,Ko Ko
+1023,Phone,Electronics,Yangon,12,350000,4200000,December,Q4,Su Su
+1024,Bookshelf,Furniture,Mandalay,9,185000,1665000,December,Q4,Aye Aye

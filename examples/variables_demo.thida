@@ -1,0 +1,7 @@
+/* Variable Assignment Demo */
+
+(42) ကို my_number ဟု သတ်မှတ်ပါ
+("Thida Language") ကို lang_name ဟု သတ်မှတ်ပါ
+
+(my_number) ကို ဖော်ပြပါ
+(lang_name) ကို ဖော်ပြပါ

@@ -1,0 +1,12 @@
+/* Thida 1.2 — Visualization Demo */
+
+("sales_data.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+/* Scatter plot */
+("sales_data" > x = "Units" , y = "Revenue") ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ
+
+/* Histogram */
+("sales_data" > group by "Revenue" , plot = "histogram") ကို ပုံဆွဲပေးပါ
+
+/* Generate PDF report */
+("sales_data" > "Revenue") ကို PDF အဖြစ် Report ထုတ်ပါ

@@ -1,0 +1,87 @@
+/* ═══════════════════════════════════════════════════════════════════
+   THIDA 1.2 — သင်ခန်းစာ ၇ — ကျန်းမာရေးဒေတာ ပြည့်စုံသောခွဲခြမ်းစိတ်ဖြာမှု
+   LESSON 7 — Full EDA: Health Dataset
+   ═══════════════════════════════════════════════════════════════════
+
+   Built-in dataset: health.csv
+   Columns: PatientID, Name, Age, Gender, Weight_kg, Height_cm,
+            BMI, BloodPressure, Cholesterol, BloodSugar,
+            Diagnosis, Smoker, Exercise_hrs_week
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Step 1: Load & Inspect ─────────────────────────────────────────── */
+
+("health.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+("health") ရဲ့ Header ဖော်ပြပါ
+("health") ရဲ့ အစပိုင်း "5" လိုင်းဖော်ပြပါ
+("health") ရဲ့ အမျိုးအစားများ ဖော်ပြပါ
+("health") အကျဥ်းချုပ် ဖော်ပြပါ
+
+
+/* ── Step 2: ရောဂါကြောင့် ဖြစ်နိုင်ချေများစစ်ဆေးခြင်း ─────────────── */
+
+/* Diagnosis distribution */
+("health" ရဲ့ "Diagnosis") frequency ကိုဖော်ပြပါ
+
+/* Gender distribution */
+("health" ရဲ့ "Gender") frequency ကိုဖော်ပြပါ
+
+/* ဆေးလိပ်သောက်မသောက် */
+("health" ရဲ့ "Smoker") frequency ကိုဖော်ပြပါ
+
+
+/* ── Step 3: BMI နှင့် ကျန်းမာရေးစာရင်းအင်း ────────────────────────── */
+
+("health" > "BMI") mean ကိုဖော်ပြပါ
+("health" > "BMI") max ကိုဖော်ပြပါ
+("health" > "BMI") min ကိုဖော်ပြပါ
+
+("health" > "BloodPressure") mean ကိုဖော်ပြပါ
+("health" > "Cholesterol") mean ကိုဖော်ပြပါ
+("health" > "BloodSugar") mean ကိုဖော်ပြပါ
+
+
+/* ── Step 4: Diagnosis အုပ်စုလိုက် BMI ပျမ်းမျှ ────────────────────── */
+
+("health" > group by "Diagnosis" , mean "BMI") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+("health" > group by "Diagnosis" , mean "BloodPressure") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+("health" > group by "Diagnosis" , mean "Cholesterol") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+/* ── Step 5: Gender အုပ်စုလိုက် ──────────────────────────────────────── */
+
+("health" > group by "Gender" , mean "BMI") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+("health" > group by "Gender" , mean "Exercise_hrs_week") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+/* ── Step 6: High Risk patients စစ်ထုတ်ခြင်း ───────────────────────── */
+
+/* Diabetes ရောဂါသည်များ */
+("health" > "Diagnosis" == "Diabetes") ကိုခွဲထုတ်ပါ
+
+/* Blood Pressure 140 အထက် */
+("health" > "BloodPressure" >= 140) ကိုခွဲထုတ်ပါ
+
+/* BMI 30 အထက် (Obese) */
+("health" > "BMI" >= 30) ကိုခွဲထုတ်ပါ
+
+
+/* ── Step 7: Column ပြင်ဆင်ခြင်း ─────────────────────────────────── */
+
+/* PatientID ဖျက်ပစ်ခြင်း */
+("health" > "PatientID") ဖျက်ပေးပါ
+
+/* BMI Risk Score column အသစ် */
+("health" > "RiskScore" , newcolumn = BMI + BloodPressure * 0.1) Column အသစ်လုပ်ပါ
+
+/* RiskScore အကြီးဆုံးမှ စီ */
+("health" > "RiskScore") ကို တန်ဖိုးကြီးစဥ် စီပေးပါ
+
+
+/* ── Step 8: Clean dataset သိမ်းဆည်းခြင်း ────────────────────────── */
+
+(health) ကို health_clean အဖြစ် သိမ်းဆည်းပါ

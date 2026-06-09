@@ -1,0 +1,73 @@
+/* ═══════════════════════════════════════════════════════════════════
+   THIDA 1.2 — သင်ခန်းစာ ၃ — စာရင်းအင်းတွက်ချက်ခြင်း
+   LESSON 3 — Statistical Functions
+   ═══════════════════════════════════════════════════════════════════
+
+   Thida တွင် mean, max, min, mode, frequency, group by
+   တို့ကို ရိုးရှင်းသော syntax ဖြင့် တွက်ချက်နိုင်သည်။
+
+   ပုံစံ:  ("dataset" > "column") function ကိုဖော်ပြပါ
+   ═══════════════════════════════════════════════════════════════════ */
+
+("students.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+
+/* ── 3.1  Mean — ပျမ်းမျှ ──────────────────────────────────────────── */
+
+/* ကျောင်းသားများ၏ Math ရမှတ်ပျမ်းမျှ */
+("students" > "Math") mean ကိုဖော်ပြပါ
+
+("students" > "Science") mean ကိုဖော်ပြပါ
+
+("students" > "English") mean ကိုဖော်ပြပါ
+
+
+/* ── 3.2  Max — အမြင့်ဆုံးတန်ဖိုး ─────────────────────────────────── */
+
+("students" > "Math") max ကိုဖော်ပြပါ
+
+("students" > "Science") max ကိုဖော်ပြပါ
+
+
+/* ── 3.3  Min — အနိမ့်ဆုံးတန်ဖိုး ─────────────────────────────────── */
+
+("students" > "Math") min ကိုဖော်ပြပါ
+
+("students" > "English") min ကိုဖော်ပြပါ
+
+
+/* ── 3.4  Mode — အများဆုံးတန်ဖိုး ─────────────────────────────────── */
+
+/* မည်သည့် Grade က အများဆုံးနည်း */
+("students" > "Grade") mode ကိုဖော်ပြပါ
+
+/* မည်သည့် City မှ ကျောင်းသားများ အများဆုံးနည်း */
+("students" > "City") mode ကိုဖော်ပြပါ
+
+
+/* ── 3.5  Frequency — ကြိမ်နှုန်း ─────────────────────────────────── */
+
+/* ပုံစံ: ("dataset" ရဲ့ "column") frequency ကိုဖော်ပြပါ */
+
+("students" ရဲ့ "Grade") frequency ကိုဖော်ပြပါ
+
+("students" ရဲ့ "City") frequency ကိုဖော်ပြပါ
+
+("students" ရဲ့ "Gender") frequency ကိုဖော်ပြပါ
+
+
+/* ── 3.6  Group By — အုပ်စုလိုက်တွက်ချက်ခြင်း ──────────────────────
+
+   ပုံစံ: ("dataset" > group by "column_a" , agg_func "column_b")
+          ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+   agg_func: mean, sum, count, max, min, median              */
+
+/* မြို့တစ်မြို့စီ၏ Math ရမှတ်ပျမ်းမျှ */
+("students" > group by "City" , mean "Math") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+/* Grade တစ်ခုချင်းစီ၏ Science ရမှတ်ပျမ်းမျှ */
+("students" > group by "Grade" , mean "Science") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+/* Gender တစ်ခုချင်း၏ English ရမှတ်ပျမ်းမျှ */
+("students" > group by "Gender" , mean "English") ကို အုပ်စုလိုက်တွက်ချက်ပါ
