@@ -6,7 +6,7 @@
 
 Thida Lang lets you write data analysis code using natural Myanmar sentence structure — every statement ends with a descriptive Burmese verb, making programs readable as plain Burmese text.
 
-> **Documentation:** https://social-insight.gitbook.io/thida-lang
+> **Documentation:** https://docs-thidalang.netlify.app/
 
 ---
 
