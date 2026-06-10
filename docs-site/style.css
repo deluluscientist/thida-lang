@@ -97,18 +97,30 @@ kbd  { font-family: var(--font-mono); font-size: .8em; background: var(--bg4);
   background: rgba(15,17,23,.92); backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   display: flex; align-items: center;
-  padding: 0 32px; gap: 0; z-index: 100;
+  padding: 0 32px; z-index: 100;
 }
-.nav-brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+[data-theme="light"] .nav { background: rgba(245,247,251,.94); }
+.nav-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .nav-logo   { font-size: 1.35rem; font-weight: 800; color: var(--bright); letter-spacing: -.5px; }
 .nav-badge  { font-size: .68rem; font-weight: 700; background: var(--accent);
                color: #fff; padding: 2px 8px; border-radius: 99px; letter-spacing: .3px; }
-.nav-links  { display: flex; align-items: center; gap: 6px; }
+.nav-center {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px;
+}
+.nav-right  { margin-left: auto; display: flex; align-items: center; gap: 8px; }
 .nav-link   { color: var(--dim); padding: 6px 14px; border-radius: 6px;
                font-size: .88rem; font-weight: 500; transition: color .15s, background .15s; }
 .nav-link:hover, .nav-link.active { color: var(--bright); background: var(--bg4);
                                      text-decoration: none; }
-.nav-docs-group { display: flex; align-items: center; gap: 2px; }
+.nav-doc-btn {
+  display: inline-flex; align-items: center;
+  background: var(--accent); color: #fff;
+  padding: 6px 16px; border-radius: 6px;
+  font-size: .85rem; font-weight: 600;
+  transition: opacity .15s; text-decoration: none;
+}
+.nav-doc-btn:hover { opacity: .85; text-decoration: none; }
 .nav-gh-icon {
   display: flex; align-items: center; justify-content: center;
   width: 30px; height: 30px; border-radius: 6px;
@@ -119,6 +131,8 @@ kbd  { font-family: var(--font-mono); font-size: .8em; background: var(--bg4);
 }
 .nav-gh-icon:hover { border-color: var(--accent); color: var(--bright);
                      background: var(--bg4); text-decoration: none; }
+/* keep legacy class harmless */
+.nav-docs-group { display: contents; }
 
 /* ── HERO ─────────────────────────────────────────────── */
 .hero {
