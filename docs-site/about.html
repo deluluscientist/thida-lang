@@ -120,49 +120,99 @@
 <!-- CONTRIBUTORS -->
 <section class="about-section" style="padding-top:56px">
   <h2 class="section-title" style="font-size:1.5rem">Contributors</h2>
-  <div style="height:8px"></div>
+  <div style="height:4px"></div>
   <p class="dc-p" style="color:var(--dim)">The people who made Thida Lang possible.</p>
 
-  <div class="contributor-grid">
+  <!-- Creator -->
+  <div class="contrib-group-label">Creator</div>
+  <div class="contributor-grid" style="grid-template-columns: 1fr">
     <div class="contrib-card creator">
-      <div class="contrib-avatar">👨‍💻</div>
-      <div class="contrib-name">Pyae Sone Phyo (Harry)</div>
-      <div class="contrib-role">Creator · Data Science Student<br>Amateur Programmer · Novice Researcher</div>
+      <div style="display:flex;align-items:center;gap:18px;text-align:left">
+        <div class="contrib-avatar av-blue" style="width:64px;height:64px;font-size:1.1rem;flex-shrink:0">PS</div>
+        <div>
+          <div class="contrib-name" style="font-size:1rem">Pyae Sone Phyo (Harry)</div>
+          <span class="contrib-tag tag-creator">Creator</span>
+          <div class="contrib-role">Founded and built Thida Lang from the ground up. Designed the language grammar, implemented the lexer, parser, and interpreter, and built the web IDE. Data Science Student, Amateur Programmer, and Novice Researcher.</div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Research -->
+  <div class="contrib-group-label">Research Supervision</div>
+  <div class="contributor-grid" style="grid-template-columns: 1fr">
     <div class="contrib-card">
-      <div class="contrib-avatar">🎓</div>
-      <div class="contrib-name">Dr. Myo Myint Oo</div>
-      <div class="contrib-role">Research Supervisor</div>
+      <div style="display:flex;align-items:center;gap:18px;text-align:left">
+        <div class="contrib-avatar av-purple" style="flex-shrink:0">MM</div>
+        <div>
+          <div class="contrib-name">Dr. Myo Myint Oo</div>
+          <span class="contrib-tag tag-research">Research Supervisor</span>
+          <div class="contrib-role">Provided academic supervision and guidance throughout the research and development process of Thida Lang.</div>
+        </div>
+      </div>
     </div>
+  </div>
+
+  <!-- Syntax Design -->
+  <div class="contrib-group-label">Syntax Design</div>
+  <div class="contributor-grid">
     <div class="contrib-card">
-      <div class="contrib-avatar">🤝</div>
+      <div class="contrib-avatar av-teal">SY</div>
       <div class="contrib-name">Saw Yan Naing</div>
-      <div class="contrib-role">Contributor</div>
+      <span class="contrib-tag tag-syntax">Syntax Design</span>
+      <div class="contrib-role">Helped shape the Myanmar grammar-based syntax structure and verb patterns of the language.</div>
     </div>
     <div class="contrib-card">
-      <div class="contrib-avatar">🤝</div>
-      <div class="contrib-name">Khine Su Myat Theim</div>
-      <div class="contrib-role">Contributor</div>
-    </div>
-    <div class="contrib-card">
-      <div class="contrib-avatar">🤝</div>
-      <div class="contrib-name">Min Sithu</div>
-      <div class="contrib-role">Contributor</div>
-    </div>
-    <div class="contrib-card">
-      <div class="contrib-avatar">🤝</div>
-      <div class="contrib-name">Min Htet Myat</div>
-      <div class="contrib-role">Contributor</div>
-    </div>
-    <div class="contrib-card">
-      <div class="contrib-avatar">🤝</div>
+      <div class="contrib-avatar av-green">MT</div>
       <div class="contrib-name">May Mon Thant</div>
-      <div class="contrib-role">Contributor</div>
+      <span class="contrib-tag tag-syntax">Syntax Design</span>
+      <div class="contrib-role">Contributed to the design of natural-language syntax rules and Myanmar sentence structure alignment.</div>
     </div>
     <div class="contrib-card">
-      <div class="contrib-avatar">🤝</div>
+      <div class="contrib-avatar av-pink">KS</div>
+      <div class="contrib-name">Khine Su Myat Theim</div>
+      <span class="contrib-tag tag-syntax">Syntax Design</span>
+      <div class="contrib-role">Assisted in refining the SOV grammar structure and ensuring natural readability of Thida Lang statements.</div>
+    </div>
+  </div>
+
+  <!-- NLP Advice -->
+  <div class="contrib-group-label">NLP Advice</div>
+  <div class="contributor-grid">
+    <div class="contrib-card">
+      <div class="contrib-avatar av-indigo">MS</div>
+      <div class="contrib-name">Min Sithu</div>
+      <span class="contrib-tag tag-nlp">NLP Advice</span>
+      <div class="contrib-role">Provided advice on natural language processing approaches for Myanmar script tokenization and parsing.</div>
+    </div>
+    <div class="contrib-card">
+      <div class="contrib-avatar av-lime">MH</div>
+      <div class="contrib-name">Min Htet Myat</div>
+      <span class="contrib-tag tag-nlp">NLP Advice</span>
+      <div class="contrib-role">Assisted with NLP guidance on handling Myanmar Unicode and linguistic edge cases in the lexer.</div>
+    </div>
+  </div>
+
+  <!-- UAT Testing -->
+  <div class="contrib-group-label">User Acceptance Testing</div>
+  <div class="contributor-grid">
+    <div class="contrib-card">
+      <div class="contrib-avatar av-orange">TH</div>
       <div class="contrib-name">Thi Han Htun (Louis)</div>
-      <div class="contrib-role">Contributor</div>
+      <span class="contrib-tag tag-uat">UAT Testing</span>
+      <div class="contrib-role">Tested the language and IDE from a user perspective, providing feedback on usability and bugs.</div>
+    </div>
+    <div class="contrib-card">
+      <div class="contrib-avatar av-rose">PT</div>
+      <div class="contrib-name">Phúc Trần</div>
+      <span class="contrib-tag tag-uat">UAT Testing</span>
+      <div class="contrib-role">Conducted user acceptance testing and helped validate the IDE experience from an international user's perspective.</div>
+    </div>
+    <div class="contrib-card">
+      <div class="contrib-avatar av-red">KT</div>
+      <div class="contrib-name">Kaung Myat Tun</div>
+      <span class="contrib-tag tag-uat">UAT Testing</span>
+      <div class="contrib-role">Performed end-to-end testing of language features and reported issues to improve overall reliability.</div>
     </div>
   </div>
 </section>
