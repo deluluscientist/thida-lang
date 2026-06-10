@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — Thida Lang 1.2</title>
+<meta name="description" content="Get in touch with the Thida Lang team.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="theme.js"></script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <span class="nav-logo">Thida Lang</span>
+    <span class="nav-badge">1.2 Beta</span>
+  </div>
+  <div class="nav-links">
+    <a href="index.html"        class="nav-link">Home</a>
+    <a href="about.html"        class="nav-link">About</a>
+    <a href="contributors.html" class="nav-link">Contributors</a>
+    <a href="docs.html"         class="nav-link">Docs</a>
+    <a href="contact.html"      class="nav-link active">Contact</a>
+    <a href="https://github.com/deluluscientist/thida-lang" target="_blank" class="nav-link nav-gh">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+          0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+          -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+          .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+          -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+          1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+          1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+          1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+      GitHub
+    </a>
+    <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="about-hero" style="text-align:center">
+  <h1 class="ah-title">Get in Touch</h1>
+  <p class="ah-sub">Have questions, ideas, or want to contribute to Thida Lang? Reach out through any of the channels below.</p>
+</div>
+
+<!-- CONTACT CARDS -->
+<section class="about-section">
+  <div class="contact-grid">
+
+    <a href="mailto:pyaesonephyo9602@gmail.com" class="contact-card">
+      <div class="cc-icon">✉️</div>
+      <div class="cc-title">Email</div>
+      <div class="cc-value">pyaesonephyo9602@gmail.com</div>
+      <div class="cc-desc">For project enquiries, collaboration requests, or general questions.</div>
+    </a>
+
+    <a href="https://github.com/deluluscientist/thida-lang" target="_blank" class="contact-card">
+      <div class="cc-icon">
+        <svg width="28" height="28" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
+            0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
+            -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66
+            .07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15
+            -.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0
+            1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82
+            1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01
+            1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </div>
+      <div class="cc-title">GitHub</div>
+      <div class="cc-value">deluluscientist/thida-lang</div>
+      <div class="cc-desc">Report bugs, request features, or contribute code via pull requests.</div>
+    </a>
+
+    <a href="https://github.com/deluluscientist/thida-lang/issues" target="_blank" class="contact-card">
+      <div class="cc-icon">🐛</div>
+      <div class="cc-title">Bug Reports</div>
+      <div class="cc-value">GitHub Issues</div>
+      <div class="cc-desc">Found a bug or unexpected behaviour? Open an issue on GitHub with steps to reproduce.</div>
+    </a>
+
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section class="about-section" style="padding-top:56px;padding-bottom:80px">
+  <h2 class="section-title" style="font-size:1.5rem">Common Questions</h2>
+  <div style="height:24px"></div>
+
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">Can I contribute to Thida Lang?</div>
+      <div class="faq-a">Yes! The project is open source under MIT license. Fork the repo on GitHub, make your changes, and open a pull request. All contributions are welcome — code, documentation, translations, or testing.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">I found a bug. How do I report it?</div>
+      <div class="faq-a">Open an issue on the <a href="https://github.com/deluluscientist/thida-lang/issues" target="_blank">GitHub Issues page</a> with a description of the problem, the code you ran, and the error message you received.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Is Thida Lang free to use?</div>
+      <div class="faq-a">Completely free and open source under the MIT license. You can use it, modify it, and distribute it freely.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Will there be a version that runs in the browser without installing anything?</div>
+      <div class="faq-a">It's on the roadmap. For now, Thida Lang requires a local Python install to run the interpreter. A hosted version is planned for a future release.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Can I use Thida Lang for my own research or teaching?</div>
+      <div class="faq-a">Absolutely. If you do, we'd love to hear about it — send a message to the email above.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Thida Lang</div>
+    <p>Myanmar grammar-based programming language · 1.2 Beta</p>
+    <p style="margin-top:8px">
+      Built by Pyae Sone Phyo (Harry) ·
+      <a href="https://github.com/deluluscientist/thida-lang" target="_blank">GitHub</a> ·
+      MIT License
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
