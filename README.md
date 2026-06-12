@@ -42,18 +42,41 @@ That is why I want to continue working on Thida Lang. Not in a fancy way, and no
 
 ## Contributors
 
-**Pyae Sone Phyo (Harry)** — Creator of Thida Lang  
-Data Science Student, Amateur Programmer, and Novice Researcher with a keen interest in Data Science, Information Security, Journalism, and Informatics.
+10 people contributed across 5 areas to bring Thida Lang 1.2 to life.
 
-| Name | Role |
-|------|------|
-| Dr. Myo Myint Oo | Research Supervisor |
-| Saw Yan Naing | Contributor |
-| Khine Su Myat Theim | Contributor |
-| Min Sithu | Contributor |
-| Min Htet Myat | Contributor |
-| May Mon Thant | Contributor |
-| Thi Han Htun (Louis) | Contributor |
+### Creator
+
+**Pyae Sone Phyo (Harry)**  
+Founded and built Thida Lang from the ground up. Designed the language grammar, implemented the lexer, parser, and interpreter, and built the web IDE. Data Science Student, Amateur Programmer, and Novice Researcher.
+
+### Research Supervision
+
+| Name | Role | Contribution |
+|------|------|-------------|
+| Dr. Myo Myint Oo | Research Supervisor | Provided academic supervision and guidance throughout the research and development process of Thida Lang. |
+
+### Syntax Design
+
+| Name | Role | Contribution |
+|------|------|-------------|
+| Saw Yan Naing | Syntax Design | Helped shape the Myanmar grammar-based syntax structure and verb patterns of the language. |
+| May Mon Thant | Syntax Design | Contributed to the design of natural-language syntax rules and Myanmar sentence structure alignment. |
+| Khine Su Myat Theim | Syntax Design | Assisted in refining the SOV grammar structure and ensuring natural readability of Thida Lang statements. |
+
+### NLP Advice
+
+| Name | Role | Contribution |
+|------|------|-------------|
+| Min Sithu | NLP Advice | Provided advice on natural language processing approaches for Myanmar script tokenization and parsing. |
+| Min Htet Myat | NLP Advice | Assisted with NLP guidance on handling Myanmar Unicode and linguistic edge cases in the lexer. |
+
+### User Acceptance Testing
+
+| Name | Role | Contribution |
+|------|------|-------------|
+| Thi Han Htun (Louis) | UAT Testing | Tested the language and IDE from a user perspective, providing feedback on usability and bugs. |
+| Phúc Trần | UAT Testing | Conducted user acceptance testing and helped validate the IDE experience from an international user's perspective. |
+| Kaung Myat Tun | UAT Testing | Performed end-to-end testing of language features and reported issues to improve overall reliability. |
 
 ---
 
