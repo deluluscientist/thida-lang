@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS — Project M.E.S.S.I</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/admin/css/admin.css" />
+</head>
+<body class="admin-body">
+
+<!-- ─── Login ──────────────────────────────────────────────────────────────── -->
+<div id="login-screen" class="login-screen" style="display:none">
+  <div class="login-box">
+    <div class="login-logo">
+      <span class="a-logo-mark">M.E.S.S.I</span>
+      <span class="a-logo-text">CMS</span>
+    </div>
+    <h1 class="login-title">Sign in</h1>
+    <p class="login-sub">Project M.E.S.S.I — Content Management</p>
+    <form id="login-form" class="login-form">
+      <div class="a-form-row">
+        <label class="a-label">Username</label>
+        <input type="text" class="a-input" id="login-user" autocomplete="username" required />
+      </div>
+      <div class="a-form-row">
+        <label class="a-label">Password</label>
+        <input type="password" class="a-input" id="login-pass" autocomplete="current-password" required />
+      </div>
+      <p class="login-error" id="login-error"></p>
+      <button type="submit" class="a-btn a-btn-primary" id="login-btn">Sign in</button>
+    </form>
+  </div>
+</div>
+
+<!-- ─── Admin App ──────────────────────────────────────────────────────────── -->
+<div id="admin-app" style="display:none">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <span class="a-logo-mark">M.E.S.S.I</span>
+      <span class="a-logo-text">CMS</span>
+    </div>
+    <nav class="admin-nav">
+      <a href="#" class="admin-nav-item active" data-section="datasets">
+        <svg viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 8h6M7 11h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Datasets
+      </a>
+      <a href="#" class="admin-nav-item" data-section="categories">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h10M3 15h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Categories
+      </a>
+      <a href="#" class="admin-nav-item" data-section="articles">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M4 4h12M4 8h8M4 12h10M4 16h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Articles
+      </a>
+      <a href="#" class="admin-nav-item" data-section="guides">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M8 8h4M8 11h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Learn / Guides
+      </a>
+      <a href="#" class="admin-nav-item" data-section="case-studies">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M4 6h12M4 10h8M4 14h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Case Studies
+      </a>
+      <a href="#" class="admin-nav-item" data-section="submissions">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M10 3v10M6 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Submissions
+        <span class="nav-badge" id="submissions-badge" style="display:none"></span>
+      </a>
+      <a href="#" class="admin-nav-item" data-section="settings">
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M10 2v2M10 16v2M2 10h2M16 10h2M4.22 4.22l1.42 1.42M14.36 14.36l1.42 1.42M4.22 15.78l1.42-1.42M14.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Settings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/" target="_blank" class="sidebar-view-site">View site ↗</a>
+      <button class="a-btn a-btn-ghost-sm" id="logout-btn">Sign out</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="admin-main" id="admin-main">
+
+    <!-- Datasets -->
+    <section id="section-datasets" class="admin-section active">
+      <div class="section-topbar">
+        <div><h2 class="section-title">Datasets</h2><p class="section-sub" id="ds-count-label"></p></div>
+        <div class="topbar-actions">
+          <div class="a-search-wrap"><input type="text" class="a-search" id="ds-search" placeholder="Search…" /></div>
+          <select class="a-select" id="ds-filter-cat"></select>
+          <button class="a-btn a-btn-primary" id="add-dataset-btn">+ Add dataset</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="a-table">
+          <thead><tr><th>Title</th><th>Category</th><th>Source</th><th>Year</th><th>Featured</th><th></th></tr></thead>
+          <tbody id="datasets-tbody"></tbody>
+        </table>
+        <div class="table-empty" id="ds-empty" style="display:none">No datasets found.</div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section id="section-categories" class="admin-section">
+      <div class="section-topbar">
+        <div><h2 class="section-title">Categories</h2></div>
+        <button class="a-btn a-btn-primary" id="add-category-btn">+ Add category</button>
+      </div>
+      <div class="table-wrap">
+        <table class="a-table">
+          <thead><tr><th>Name</th><th>Slug</th><th>Color</th><th>Datasets</th><th></th></tr></thead>
+          <tbody id="categories-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Articles list -->
+    <section id="section-articles" class="admin-section">
+      <div class="section-topbar">
+        <div><h2 class="section-title">Articles</h2><p class="section-sub" id="art-count-label"></p></div>
+        <button class="a-btn a-btn-primary" id="add-article-btn">+ New article</button>
+      </div>
+      <div class="table-wrap">
+        <table class="a-table">
+          <thead><tr><th>Title</th><th>Tag</th><th>Author</th><th>Status</th><th>Date</th><th></th></tr></thead>
+          <tbody id="articles-tbody"></tbody>
+        </table>
+        <div class="table-empty" id="art-empty" style="display:none">No articles yet. Click "+ New article" to create one.</div>
+      </div>
+    </section>
+
+    <!-- Guides list -->
+    <section id="section-guides" class="admin-section">
+      <div class="section-topbar">
+        <div><h2 class="section-title">Learn / Guides</h2><p class="section-sub" id="guides-count-label"></p></div>
+        <button class="a-btn a-btn-primary" id="add-guide-btn">+ New guide</button>
+      </div>
+      <div class="table-wrap">
+        <table class="a-table">
+          <thead><tr><th>Title</th><th>Section</th><th>Difficulty</th><th>Order</th><th>Status</th><th></th></tr></thead>
+          <tbody id="guides-tbody"></tbody>
+        </table>
+        <div class="table-empty" id="guides-empty" style="display:none">No guides yet.</div>
+      </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section id="section-case-studies" class="admin-section">
+      <div class="section-topbar">
+        <div><h2 class="section-title">Case Studies</h2><p class="section-sub" id="cs-count-label"></p></div>
+        <button class="a-btn a-btn-primary" id="add-cs-btn">+ Add case study</button>
+      </div>
+      <div class="table-wrap">
+        <table class="a-table">
+          <thead><tr><th>Title</th><th>Tag</th><th>Organisation</th><th>Year</th><th>Status</th><th></th></tr></thead>
+          <tbody id="cs-tbody"></tbody>
+        </table>
+        <div class="table-empty" id="cs-empty" style="display:none">No case studies yet.</div>
+      </div>
+    </section>
+
+    <!-- Submissions -->
+    <section id="section-submissions" class="admin-section">
+      <div class="section-topbar">
+        <div><h2 class="section-title">Submissions</h2><p class="section-sub">Dataset contributions from the public</p></div>
+        <div class="topbar-actions">
+          <select class="a-select" id="sub-filter-status">
+            <option value="">All statuses</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+            <option value="rejected">Rejected</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="a-table">
+          <thead><tr><th>Dataset Name</th><th>URL</th><th>Source</th><th>Category</th><th>Email</th><th>Date</th><th>Status</th><th></th></tr></thead>
+          <tbody id="submissions-tbody"></tbody>
+        </table>
+        <div class="table-empty" id="sub-empty" style="display:none">No submissions yet.</div>
+      </div>
+    </section>
+
+    <!-- Settings -->
+    <section id="section-settings" class="admin-section">
+      <div class="section-topbar"><h2 class="section-title">Site Settings</h2></div>
+      <div class="settings-grid-wide">
+        <div class="settings-card">
+          <h3 class="settings-card-title">Hero Section</h3>
+          <form id="settings-form" class="settings-form">
+            <div class="a-form-row">
+              <label class="a-label">Browser tab title</label>
+              <input type="text" class="a-input" name="site_title" placeholder="MM Data Directories" />
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Hero eyebrow <span class="a-hint">small label above the title</span></label>
+              <input type="text" class="a-input" name="hero_eyebrow" placeholder="Open Data Portal" />
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Hero title</label>
+              <input type="text" class="a-input" name="hero_title" placeholder="Project M.E.S.S.I" />
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Hero subtitle / tagline</label>
+              <input type="text" class="a-input" name="tagline" placeholder="A curated directory…" />
+            </div>
+            <div class="settings-form-footer">
+              <button type="submit" class="a-btn a-btn-primary">Save hero</button>
+              <span class="save-feedback" id="settings-feedback"></span>
+            </div>
+          </form>
+        </div>
+        <div class="settings-card">
+          <h3 class="settings-card-title">About Page</h3>
+          <form id="about-form" class="settings-form">
+            <div class="a-form-row">
+              <label class="a-label">Lead paragraph <span class="a-hint">bold intro text</span></label>
+              <textarea class="a-input a-textarea" name="about_lead" rows="3"></textarea>
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Main content <span class="a-hint">supports HTML tags</span></label>
+              <textarea class="a-input a-textarea a-textarea-lg" name="about_content" rows="10"></textarea>
+            </div>
+            <div class="settings-form-footer">
+              <button type="submit" class="a-btn a-btn-primary">Save about page</button>
+              <span class="save-feedback" id="about-feedback"></span>
+            </div>
+          </form>
+        </div>
+        <div class="settings-card">
+          <h3 class="settings-card-title">Footer</h3>
+          <form id="footer-form" class="settings-form">
+            <div class="a-form-row">
+              <label class="a-label">Footer description</label>
+              <input type="text" class="a-input" name="footer_copy" placeholder="An independent open data index for Myanmar." />
+            </div>
+            <div class="settings-form-footer">
+              <button type="submit" class="a-btn a-btn-primary">Save footer</button>
+              <span class="save-feedback" id="footer-feedback"></span>
+            </div>
+          </form>
+        </div>
+        <div class="settings-card">
+          <h3 class="settings-card-title">Change Password</h3>
+          <form id="pw-form" class="settings-form">
+            <div class="a-form-row">
+              <label class="a-label">Current password</label>
+              <input type="password" class="a-input" name="currentPassword" required />
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">New password</label>
+              <input type="password" class="a-input" name="newPassword" required minlength="8" />
+            </div>
+            <div class="settings-form-footer">
+              <button type="submit" class="a-btn a-btn-primary">Update password</button>
+              <span class="save-feedback" id="pw-feedback"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Article full-page editor ──────────────────────────────────────────── -->
+    <div id="article-editor" class="editor-panel" style="display:none">
+      <div class="ep-bar">
+        <button class="ep-back-btn" onclick="closeArticleEditor()">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Articles
+        </button>
+        <span class="ep-saving-indicator" id="art-ep-saving"></span>
+        <div class="ep-bar-right">
+          <label class="ep-status-toggle" title="Toggle publish status">
+            <input type="checkbox" id="art-ep-published" />
+            <span class="ep-toggle-track">
+              <span class="ep-draft-label">Draft</span>
+              <span class="ep-pub-label">Published</span>
+              <span class="ep-knob"></span>
+            </span>
+          </label>
+          <button class="a-btn a-btn-primary" id="art-ep-save-btn">Save</button>
+        </div>
+      </div>
+      <div class="ep-layout">
+        <div class="ep-content-col">
+          <input type="hidden" id="art-ep-id" />
+          <input type="text" class="ep-title-input" id="art-ep-title" placeholder="Article title…" />
+          <textarea class="ep-excerpt-input" id="art-ep-excerpt" placeholder="Short excerpt shown in article listings…" rows="2"></textarea>
+          <div class="ep-editor-wrap">
+            <div id="art-quill"></div>
+          </div>
+        </div>
+        <div class="ep-meta-col">
+          <div class="ep-meta-card">
+            <h4 class="ep-meta-heading">Post details</h4>
+            <div class="a-form-row">
+              <label class="a-label">Slug</label>
+              <input type="text" class="a-input" id="art-ep-slug" placeholder="auto-generated from title" />
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Author</label>
+              <input type="text" class="a-input" id="art-ep-author" value="MM Data Directories" />
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Tag</label>
+              <select class="a-input" id="art-ep-tag">
+                <option value="">No tag</option>
+                <option>Open Data</option>
+                <option>Licenses</option>
+                <option>Research</option>
+                <option>Tutorial</option>
+                <option>News</option>
+                <option>AI &amp; Language</option>
+                <option>Case Study</option>
+                <option>Myanmar NLP</option>
+              </select>
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Label <span class="a-hint">badge on card</span></label>
+              <input type="text" class="a-input" id="art-ep-label" placeholder="e.g. New, Featured" />
+            </div>
+          </div>
+          <div class="ep-meta-card">
+            <h4 class="ep-meta-heading">Cover Image</h4>
+            <div class="ep-cover-wrap" id="art-cover-wrap">
+              <div class="ep-cover-preview" id="art-ep-cover-preview" style="display:none">
+                <img id="art-ep-cover-img" src="" alt="cover" />
+                <button type="button" class="ep-cover-remove" onclick="removeCoverEp('art')">✕ Remove</button>
+              </div>
+              <input type="hidden" id="art-ep-cover-image" />
+              <label class="ep-cover-upload-btn" id="art-cover-upload-label">
+                <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 9l4-3 4 3 4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="8" r="1" fill="currentColor"/></svg>
+                <span id="art-cover-upload-text">Upload cover image</span>
+                <input type="file" accept="image/*" id="art-ep-cover-file" style="display:none" />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Guide full-page editor ─────────────────────────────────────────────── -->
+    <div id="guide-editor" class="editor-panel" style="display:none">
+      <div class="ep-bar">
+        <button class="ep-back-btn" onclick="closeGuideEditor()">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Guides
+        </button>
+        <span class="ep-saving-indicator" id="guide-ep-saving"></span>
+        <div class="ep-bar-right">
+          <label class="ep-status-toggle" title="Toggle publish status">
+            <input type="checkbox" id="guide-ep-published" />
+            <span class="ep-toggle-track">
+              <span class="ep-draft-label">Draft</span>
+              <span class="ep-pub-label">Published</span>
+              <span class="ep-knob"></span>
+            </span>
+          </label>
+          <button class="a-btn a-btn-primary" id="guide-ep-save-btn">Save</button>
+        </div>
+      </div>
+      <div class="ep-layout">
+        <div class="ep-content-col">
+          <input type="hidden" id="guide-ep-id" />
+          <input type="text" class="ep-title-input" id="guide-ep-title" placeholder="Guide title…" />
+          <textarea class="ep-excerpt-input" id="guide-ep-excerpt" placeholder="Short excerpt shown in guide listings…" rows="2"></textarea>
+          <div class="ep-editor-wrap">
+            <div id="guide-quill"></div>
+          </div>
+        </div>
+        <div class="ep-meta-col">
+          <div class="ep-meta-card">
+            <h4 class="ep-meta-heading">Guide details</h4>
+            <div class="a-form-row">
+              <label class="a-label">Slug</label>
+              <input type="text" class="a-input" id="guide-ep-slug" placeholder="auto-generated from title" />
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Section</label>
+              <select class="a-input" id="guide-ep-section">
+                <option>Myanmar NLP</option>
+                <option>Data Types</option>
+                <option>Tools</option>
+                <option>File Formats</option>
+                <option>Databases</option>
+                <option>Getting Started</option>
+              </select>
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Difficulty</label>
+              <select class="a-input" id="guide-ep-difficulty">
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+              </select>
+            </div>
+            <div class="a-form-row">
+              <label class="a-label">Sort order <span class="a-hint">lower = first</span></label>
+              <input type="number" class="a-input" id="guide-ep-sort" value="0" min="0" />
+            </div>
+          </div>
+          <div class="ep-meta-card">
+            <h4 class="ep-meta-heading">Cover Image</h4>
+            <div class="ep-cover-wrap" id="guide-cover-wrap">
+              <div class="ep-cover-preview" id="guide-ep-cover-preview" style="display:none">
+                <img id="guide-ep-cover-img" src="" alt="cover" />
+                <button type="button" class="ep-cover-remove" onclick="removeCoverEp('guide')">✕ Remove</button>
+              </div>
+              <input type="hidden" id="guide-ep-cover-image" />
+              <label class="ep-cover-upload-btn" id="guide-cover-upload-label">
+                <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 9l4-3 4 3 4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6.5" cy="8" r="1" fill="currentColor"/></svg>
+                <span id="guide-cover-upload-text">Upload cover image</span>
+                <input type="file" accept="image/*" id="guide-ep-cover-file" style="display:none" />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /admin-main -->
+</div><!-- /admin-app -->
+
+<!-- ─── Dataset Modal ──────────────────────────────────────────────────────── -->
+<div class="a-modal-overlay" id="dataset-modal">
+  <div class="a-modal">
+    <div class="a-modal-header">
+      <h3 id="dataset-modal-title">Add dataset</h3>
+      <button class="a-modal-close" id="dataset-modal-close">✕</button>
+    </div>
+    <form id="dataset-form" class="a-modal-body">
+      <input type="hidden" name="id" id="ds-id" />
+      <div class="modal-form-grid">
+        <div class="a-form-row full">
+          <label class="a-label">Title <span class="req">*</span></label>
+          <input type="text" class="a-input" name="title" required />
+        </div>
+        <div class="a-form-row full">
+          <label class="a-label">Description</label>
+          <textarea class="a-input" name="description" rows="3"></textarea>
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Category</label>
+          <select class="a-input" name="category_id" id="ds-cat-select"></select>
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Source</label>
+          <input type="text" class="a-input" name="source" />
+        </div>
+        <div class="a-form-row full">
+          <label class="a-label">Source URL</label>
+          <input type="url" class="a-input" name="source_url" />
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">License</label>
+          <input type="text" class="a-input" name="license" placeholder="e.g. CC BY 4.0" />
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Data types</label>
+          <input type="text" class="a-input" name="data_types" placeholder="e.g. CSV, GeoJSON" />
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Year</label>
+          <input type="text" class="a-input" name="year" placeholder="e.g. 2023" maxlength="4" />
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Tags</label>
+          <input type="text" class="a-input" name="tags" placeholder="Comma separated" />
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Label <span class="a-hint">badge on card</span></label>
+          <input type="text" class="a-input" name="label" placeholder="e.g. New, Updated" />
+        </div>
+        <div class="a-form-row full">
+          <label class="a-label">Cover image</label>
+          <div class="img-upload-wrap">
+            <input type="hidden" name="cover_image" id="ds-cover-image" />
+            <div class="img-preview-box" id="ds-img-preview"></div>
+            <label class="img-upload-btn" id="ds-upload-label">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 4v8M6 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span id="ds-upload-text">Upload image</span>
+              <input type="file" accept="image/*" id="ds-img-file" style="display:none" />
+            </label>
+            <button type="button" class="img-remove-btn" id="ds-img-remove" style="display:none" onclick="removeModalImage('ds')">Remove</button>
+          </div>
+        </div>
+        <div class="a-form-row full">
+          <label class="a-check-label">
+            <input type="checkbox" name="featured" id="ds-featured" />
+            <span>Mark as featured</span>
+          </label>
+        </div>
+      </div>
+      <div class="a-modal-footer">
+        <button type="button" class="a-btn a-btn-ghost" onclick="closeDatasetModal()">Cancel</button>
+        <button type="submit" class="a-btn a-btn-primary" id="ds-save-btn">Save dataset</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ─── Category Modal ────────────────────────────────────────────────────── -->
+<div class="a-modal-overlay" id="category-modal">
+  <div class="a-modal a-modal-sm">
+    <div class="a-modal-header">
+      <h3 id="cat-modal-title">Add category</h3>
+      <button class="a-modal-close" id="category-modal-close">✕</button>
+    </div>
+    <form id="category-form" class="a-modal-body">
+      <input type="hidden" name="id" id="cat-id" />
+      <div class="a-form-row">
+        <label class="a-label">Name <span class="req">*</span></label>
+        <input type="text" class="a-input" name="name" required />
+      </div>
+      <div class="a-form-row">
+        <label class="a-label">Slug <span class="a-hint">auto-generated if empty</span></label>
+        <input type="text" class="a-input" name="slug" />
+      </div>
+      <div class="a-form-row">
+        <label class="a-label">Color</label>
+        <input type="color" class="a-input a-color-input" name="color" value="#4a7c59" />
+      </div>
+      <div class="a-modal-footer">
+        <button type="button" class="a-btn a-btn-ghost" onclick="closeCategoryModal()">Cancel</button>
+        <button type="submit" class="a-btn a-btn-primary">Save category</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ─── Case Study Modal ──────────────────────────────────────────────────── -->
+<div class="a-modal-overlay" id="cs-modal">
+  <div class="a-modal a-modal-lg">
+    <div class="a-modal-header">
+      <h3 id="cs-modal-title">Add case study</h3>
+      <button class="a-modal-close" id="cs-modal-close">✕</button>
+    </div>
+    <form id="cs-form" class="a-modal-body">
+      <input type="hidden" name="id" id="cs-id" />
+      <div class="modal-form-grid">
+        <div class="a-form-row full">
+          <label class="a-label">Title <span class="req">*</span></label>
+          <input type="text" class="a-input" name="title" required />
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Tag / Category</label>
+          <select class="a-input" name="tag">
+            <option value="">None</option>
+            <option>Health</option><option>Journalism</option><option>NLP</option>
+            <option>Humanitarian</option><option>Education</option><option>Agriculture</option>
+            <option>Geospatial</option><option>Economic</option><option>Transport</option>
+          </select>
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Organisation</label>
+          <input type="text" class="a-input" name="org" />
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Year</label>
+          <input type="text" class="a-input" name="year" placeholder="2024" />
+        </div>
+        <div class="a-form-row">
+          <label class="a-label">Datasets used</label>
+          <input type="text" class="a-input" name="datasets_used" placeholder="Dataset A, Dataset B" />
+        </div>
+        <div class="a-form-row full">
+          <label class="a-label">Cover image</label>
+          <div class="img-upload-wrap">
+            <input type="hidden" name="cover_image" id="cs-cover-image" />
+            <div class="img-preview-box" id="cs-img-preview"></div>
+            <label class="img-upload-btn" id="cs-upload-label">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 4v8M6 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span id="cs-upload-text">Upload image</span>
+              <input type="file" accept="image/*" id="cs-img-file" style="display:none" />
+            </label>
+            <button type="button" class="img-remove-btn" id="cs-img-remove" style="display:none" onclick="removeModalImage('cs')">Remove</button>
+          </div>
+        </div>
+        <div class="a-form-row full">
+          <label class="a-label">Description / Excerpt</label>
+          <textarea class="a-input" name="excerpt" rows="4"></textarea>
+        </div>
+        <div class="a-form-row full">
+          <label class="a-check-label">
+            <input type="checkbox" id="cs-published" name="published" checked />
+            <span>Published (visible on site)</span>
+          </label>
+        </div>
+      </div>
+      <div class="a-modal-footer">
+        <button type="button" class="a-btn a-btn-ghost" onclick="closeCsModal()">Cancel</button>
+        <button type="submit" class="a-btn a-btn-primary" id="cs-save-btn">Save case study</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ─── Confirm modal ─────────────────────────────────────────────────────── -->
+<div class="a-modal-overlay" id="confirm-modal">
+  <div class="a-modal a-modal-sm">
+    <div class="a-modal-header"><h3>Confirm delete</h3></div>
+    <div class="a-modal-body">
+      <p id="confirm-msg" style="margin-bottom:20px;color:#555;line-height:1.6"></p>
+      <div class="a-modal-footer">
+        <button class="a-btn a-btn-ghost" onclick="closeConfirm()">Cancel</button>
+        <button class="a-btn a-btn-danger" id="confirm-ok">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+<script src="/admin/js/admin.js"></script>
+</body>
+</html>

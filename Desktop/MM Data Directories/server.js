@@ -374,12 +374,20 @@ app.get('/api/admin/guides', requireAuth, async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+app.get('/api/admin/guides/:id', requireAuth, async (req, res) => {
+  try {
+    const { data, error } = await supabase.from('guides').select('*').eq('id', req.params.id).single();
+    if (error || !data) return res.status(404).json({ error: 'Not found' });
+    res.json(data);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 app.post('/api/admin/guides', requireAuth, async (req, res) => {
   try {
-    const { title, slug, section, excerpt, content, difficulty, published, sort_order } = req.body;
+    const { title, slug, section, excerpt, content, difficulty, published, sort_order, cover_image } = req.body;
     if (!title || !slug) return res.status(400).json({ error: 'Title and slug required' });
     const { data, error } = await supabase.from('guides')
-      .insert({ title, slug, section: section || 'Tools', excerpt: excerpt || '', content: content || '', difficulty: difficulty || 'Beginner', published: published ? 1 : 0, sort_order: sort_order || 0 })
+      .insert({ title, slug, section: section || 'Tools', excerpt: excerpt || '', content: content || '', difficulty: difficulty || 'Beginner', published: published ? 1 : 0, sort_order: sort_order || 0, cover_image: cover_image || null })
       .select().single();
     if (error) throw error;
     res.json({ id: data.id });
@@ -388,8 +396,8 @@ app.post('/api/admin/guides', requireAuth, async (req, res) => {
 
 app.put('/api/admin/guides/:id', requireAuth, async (req, res) => {
   try {
-    const { title, slug, section, excerpt, content, difficulty, published, sort_order } = req.body;
-    await supabase.from('guides').update({ title, slug, section, excerpt: excerpt || '', content: content || '', difficulty: difficulty || 'Beginner', published: published ? 1 : 0, sort_order: sort_order || 0, updated_at: new Date().toISOString() }).eq('id', req.params.id);
+    const { title, slug, section, excerpt, content, difficulty, published, sort_order, cover_image } = req.body;
+    await supabase.from('guides').update({ title, slug, section, excerpt: excerpt || '', content: content || '', difficulty: difficulty || 'Beginner', published: published ? 1 : 0, sort_order: sort_order || 0, cover_image: cover_image || null, updated_at: new Date().toISOString() }).eq('id', req.params.id);
     res.json({ success: true });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
@@ -418,10 +426,10 @@ app.get('/api/admin/case-studies', requireAuth, async (req, res) => {
 
 app.post('/api/admin/case-studies', requireAuth, async (req, res) => {
   try {
-    const { title, tag, excerpt, org, year, datasets_used, published } = req.body;
+    const { title, tag, excerpt, org, year, datasets_used, published, cover_image } = req.body;
     if (!title) return res.status(400).json({ error: 'Title required' });
     const { data, error } = await supabase.from('case_studies')
-      .insert({ title, tag: tag || '', excerpt: excerpt || '', org: org || '', year: year || '', datasets_used: datasets_used || '', published: published ? 1 : 0 })
+      .insert({ title, tag: tag || '', excerpt: excerpt || '', org: org || '', year: year || '', datasets_used: datasets_used || '', published: published ? 1 : 0, cover_image: cover_image || null })
       .select().single();
     if (error) throw error;
     res.json({ id: data.id });
@@ -430,8 +438,8 @@ app.post('/api/admin/case-studies', requireAuth, async (req, res) => {
 
 app.put('/api/admin/case-studies/:id', requireAuth, async (req, res) => {
   try {
-    const { title, tag, excerpt, org, year, datasets_used, published } = req.body;
-    await supabase.from('case_studies').update({ title, tag: tag || '', excerpt: excerpt || '', org: org || '', year: year || '', datasets_used: datasets_used || '', published: published ? 1 : 0 }).eq('id', req.params.id);
+    const { title, tag, excerpt, org, year, datasets_used, published, cover_image } = req.body;
+    await supabase.from('case_studies').update({ title, tag: tag || '', excerpt: excerpt || '', org: org || '', year: year || '', datasets_used: datasets_used || '', published: published ? 1 : 0, cover_image: cover_image || null }).eq('id', req.params.id);
     res.json({ success: true });
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
