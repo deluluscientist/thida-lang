@@ -108,7 +108,7 @@ app.get('/api/categories', async (req, res) => {
 // ── Datasets ──────────────────────────────────────────────────────────────────
 app.get('/api/datasets', async (req, res) => {
   try {
-    const { q, category, featured, limit = 50, offset = 0 } = req.query;
+    const { q, category, featured, limit = 100, offset = 0 } = req.query;
     let query = supabase.from('datasets').select('*, categories(name, slug, color)', { count: 'exact' });
     if (q) query = query.or(`title.ilike.%${q}%,description.ilike.%${q}%,tags.ilike.%${q}%,source.ilike.%${q}%`);
     if (featured === '1') query = query.eq('featured', 1);
