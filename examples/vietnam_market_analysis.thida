@@ -1,0 +1,118 @@
+// ═══════════════════════════════════════════════════════════════
+// Vietnam Personal Care Fragrance Market — Analysis in Thida Lang
+// Dataset: vietnam_market.csv (848 products, 7 categories)
+// ═══════════════════════════════════════════════════════════════
+
+// ── 1. DATA LOADING ──────────────────────────────────────────
+("vietnam_market.csv" , file type = csv , safe copy = true) ကိုဖတ်ပါ
+
+// Quick overview
+("vietnam_market") ရဲ့ Header ဖော်ပြပါ
+("vietnam_market") အကျဥ်းချုပ် ဖော်ပြပါ
+("vietnam_market") ရဲ့ အစပိုင်း "10" လိုင်းဖော်ပြပါ
+
+
+// ── 2. MARKET OVERVIEW ───────────────────────────────────────
+// Total products per category
+("vietnam_market" ရဲ့ "Product_Category") frequency ကိုဖော်ပြပါ
+
+// Brand origin split (Local vs International)
+("vietnam_market" ရဲ့ "Brand_Origin") frequency ကိုဖော်ပြပါ
+
+// Price tier distribution
+("vietnam_market" ရဲ့ "Price_Tier") frequency ကိုဖော်ပြပါ
+
+// Emerging vs Established brands
+("vietnam_market" ရဲ့ "Brand_Status") frequency ကိုဖော်ပြပါ
+
+
+// ── 3. CONSUMER RATINGS ANALYSIS ────────────────────────────
+// Average rating per product category
+("vietnam_market" > group by "Product_Category" , mean "Rating") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+// Top rated categories by average reviews
+("vietnam_market" > group by "Product_Category" , mean "Reviews") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+// Overall rating stats
+("vietnam_market" > "Rating") mean ကိုဖော်ပြပါ
+("vietnam_market" > "Rating") max ကိုဖော်ပြပါ
+("vietnam_market" > "Rating") min ကိုဖော်ပြပါ
+
+
+// ── 4. FRAGRANCE FAMILIES ───────────────────────────────────
+// Most popular fragrance types across all categories
+("vietnam_market" ရဲ့ "Fragrance_Type") frequency ကိုဖော်ပြပါ
+
+// Fragrance preference by category
+("vietnam_market" > group by "Fragrance_Type" , mean "Rating") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+// ── 5. PRICING ANALYSIS ─────────────────────────────────────
+// Average price per category
+("vietnam_market" > group by "Product_Category" , mean "Price_VND") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+// Average price by brand origin (Local vs International)
+("vietnam_market" > group by "Brand_Origin" , mean "Price_VND") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+// Average price by tier
+("vietnam_market" > group by "Price_Tier" , mean "Price_VND") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+// Overall price range
+("vietnam_market" > "Price_VND") mean ကိုဖော်ပြပါ
+("vietnam_market" > "Price_VND") max ကိုဖော်ပြပါ
+("vietnam_market" > "Price_VND") min ကိုဖော်ပြပါ
+
+
+// ── 6. BRAND PERFORMANCE ────────────────────────────────────
+// Local vs International: average rating comparison
+("vietnam_market" > group by "Brand_Origin" , mean "Rating") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+// Emerging vs Established: average rating comparison
+("vietnam_market" > group by "Brand_Status" , mean "Rating") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+// Emerging vs Established: average review count
+("vietnam_market" > group by "Brand_Status" , mean "Reviews") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+// Platform distribution
+("vietnam_market" ရဲ့ "Platform") frequency ကိုဖော်ပြပါ
+
+
+// ── 7. EDP (FINE FRAGRANCE) DEEP DIVE ───────────────────────
+// Filter EDP only
+("vietnam_market" > "Product_Category" == "EDP") ကိုခွဲထုတ်ပါ
+(edp_only) ကို edp_market အဖြစ် သိမ်းဆည်းပါ
+
+// EDP fragrance family popularity
+("edp_market" ရဲ့ "Fragrance_Type") frequency ကိုဖော်ပြပါ
+
+// EDP local vs international
+("edp_market" ရဲ့ "Brand_Origin") frequency ကိုဖော်ပြပါ
+
+// EDP top performing price tier by rating
+("edp_market" > group by "Price_Tier" , mean "Rating") ကို အုပ်စုလိုက်တွက်ချက်ပါ
+
+
+// ── 8. VISUALIZATIONS ───────────────────────────────────────
+// Bar chart: average rating by product category
+("vietnam_market" > x = "Product_Category" , y = "Rating")
+  ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ
+
+// Bar chart: product count by price tier
+("vietnam_market" > x = "Price_Tier" , y = "Reviews")
+  ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ
+
+// Scatter: price vs rating (all products)
+("vietnam_market" > x = "Price_VND" , y = "Rating")
+  ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ
+
+// Scatter: reviews vs rating
+("vietnam_market" > x = "Reviews" , y = "Rating")
+  ကို scatter_plot အဖြစ် ပုံဆွဲပေးပါ
+
+// Histogram: price distribution
+("vietnam_market" > group by "Price_VND" , plot = "histogram")
+  ကို ပုံဆွဲပေးပါ
+
+// Bar chart: local vs international brand counts by category
+("vietnam_market" > x = "Brand_Origin" , y = "Rating")
+  ကို bar_chart အဖြစ် ပုံဆွဲပေးပါ
