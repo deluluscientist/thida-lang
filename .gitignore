@@ -27,6 +27,11 @@ workspace/
 *.swp
 *.swo
 
+# Accidentally included folders (other projects / OS artifacts)
+Desktop/
+mm-dataverse/
+d041f630-e216-4c73-8723-38f28bcb46a9.png
+
 # Jupyter
 .ipynb_checkpoints/
 
